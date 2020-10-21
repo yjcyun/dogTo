@@ -13,7 +13,7 @@ const ThumbnailCard = ({ fontSize, category, title }) => {
         <img src={image1} alt='thumbnail' />
       </div>
       <div className='article-thumbnail-header header'>
-        <h2>An update for pet owners: More brands of dog food recalled beacuse they may be toxic</h2>
+        An update for pet owners: More brands of dog food recalled beacuse they may be toxic
       </div>
     </ThumbnailCardWrapper>
   )
@@ -27,10 +27,8 @@ const ThumbnailCardWrapper = styled.div`
     margin-top: -3rem;
     background: var(--white);
     width: 90%;
-    h2 {
-      font-weight: 800;
-      font-size: ${props => props.fontSize && props.fontSize}
-    }
+    font-weight: 800;
+    font-size: ${props => props.fontSize && props.fontSize}  
   }
 
   .article-hub-container{

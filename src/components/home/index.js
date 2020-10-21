@@ -16,6 +16,7 @@ const HomeWrapper = styled.section`
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-gap: 2rem;
+  padding: 1rem 0;
 `
 
 export default Home

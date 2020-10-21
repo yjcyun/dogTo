@@ -43,6 +43,7 @@ const News = () => {
 }
 
 const NewsWrapper = styled.div`
+  padding: 1rem 0;
   .intro{
     display: grid;
     grid-template-columns: 3fr 2fr;
