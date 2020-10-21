@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@500;700;800&family=Oswald:wght@500&display=swap");
 
 :root {
   --black: #232424;
@@ -8,6 +8,7 @@
   --white: #fff;
   --heading-ff: "Montserrat", sans-serif;
   --primary-ff: "Merriweather", serif;
+  --secondary-heading-ff: "Oswald", sans-serif;
   --transiton: 0.3s all ease;
   --max-width: 1170px;
 }
@@ -20,7 +21,7 @@
 
 body {
   font-family: var(--primary-ff);
-  color: var(--grey);
+  color: var(--black);
   background: var(--bcg-grey);
 }
 
@@ -32,6 +33,7 @@ main {
   max-width: var(--max-width);
   margin: 4rem auto 0;
   background: var(--white);
+  padding: 1rem;
 }
 
 img {
@@ -45,4 +47,8 @@ img {
 
 .icon {
   vertical-align: bottom;
+}
+
+.text-red {
+  color: var(--red);
 }

@@ -15,7 +15,7 @@ const Navbar = () => {
       {showNavBox && <NavlinkHover />}
       <div className='header-container'>
         <div className='header-left'>
-          <Link to='/' className='logo-container'>dogTO</Link>
+          <Link to='/' className='logo-container text-red'>dogTO</Link>
         </div>
         <ul className='nav-links'>
           <li><Link to='/toronto'>best of toronto</Link></li>
@@ -88,7 +88,6 @@ const NavbarWrapper = styled.nav`
 
   .logo-container {
     font-size: 2rem;
-    color: var(--red);
     font-weight: 800;
     text-decoration: none;
   }
@@ -97,6 +96,7 @@ const NavbarWrapper = styled.nav`
     align-items: center;
     li{
       margin: 0 0.5rem;
+      font-family: var(--secondary-heading-ff);
     }
     li:hover a{
       color: var(--red);

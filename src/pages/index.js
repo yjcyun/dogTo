@@ -1,10 +1,11 @@
 import React from 'react'
 import Layout from '../components/layout/Layout'
+import Home from '../components/home/index'
 
 const index = () => {
   return (
     <Layout>
-      Hello World
+      <Home />
     </Layout>
   )
 }
