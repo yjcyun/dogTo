@@ -37,7 +37,7 @@ main {
   max-width: var(--max-width);
   margin: 4rem auto 0;
   background: var(--white);
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
 }
 
 img {

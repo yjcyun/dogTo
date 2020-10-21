@@ -37,6 +37,10 @@ const Article = () => {
           </div>
         </div>
       </ArticleDetailBody>
+      <Subscribe heading='Stay in the loop'>
+        Sign up for our free email newsletter. <br />
+      Unsubscribe anytime or <a href="/">contact us</a> for details
+      </Subscribe>
     </>
   )
 }
@@ -103,8 +107,8 @@ const ArticleDetailBody = styled.section`
     .article-credit {
       font-size: 0.8rem;
       border-bottom: 1px solid var(--bcg-grey);
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
       span {
         color: var(--grey);
       }
