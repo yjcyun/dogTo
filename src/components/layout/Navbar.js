@@ -3,22 +3,40 @@ import { Link } from 'gatsby'
 import { BiUser, BiUserVoice } from 'react-icons/bi'
 import { BiSearch, BiSearchAlt } from 'react-icons/bi'
 import styled from 'styled-components'
+import NavlinkHover from './NavlinkHover'
 
 const Navbar = () => {
   const [hoverBtnUser, setHoverBtnUser] = useState(false);
   const [hoverBtnSearch, setHoverBtnSearch] = useState(false);
+  const [showNavBox, setShowNavBox] = useState(false);
 
   return (
     <NavbarWrapper className='header'>
+      {showNavBox && <NavlinkHover />}
       <div className='header-container'>
         <div className='header-left'>
-          <div className='logo-container'>dogTO</div>
+          <Link to='/' className='logo-container'>dogTO</Link>
         </div>
         <ul className='nav-links'>
           <li><Link to='/toronto'>best of toronto</Link></li>
-          <li><Link to='/stores'>stores</Link></li>
-          <li><Link to='/places'>places</Link></li>
-          <li><Link to='/news'>latest news</Link></li>
+          <li
+            onMouseEnter={() => setShowNavBox(true)}
+            onMouseLeave={() => setShowNavBox(false)}
+          >
+            <Link to='/stores'>stores</Link>
+          </li>
+          <li
+            onMouseEnter={() => setShowNavBox(true)}
+            onMouseLeave={() => setShowNavBox(false)}
+          >
+            <Link to='/places'>places</Link>
+          </li>
+          <li
+            onMouseEnter={() => setShowNavBox(true)}
+            onMouseLeave={() => setShowNavBox(false)}
+          >
+            <Link to='/news'>latest news</Link>
+          </li>
           <li><Link to='/videos'>videos</Link></li>
         </ul>
         <div className='header-right'>
@@ -52,9 +70,10 @@ const NavbarWrapper = styled.nav`
   right: 0;
   z-index: 100;
   border-bottom: 1px solid var(--grey);
+  background: var(--white);
 
   .header-container{
-    max-width: 1170px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 0 0 1.5rem;
     display: flex;
@@ -71,12 +90,17 @@ const NavbarWrapper = styled.nav`
     font-size: 2rem;
     color: var(--red);
     font-weight: 800;
+    text-decoration: none;
   }
 
   .nav-links {
     align-items: center;
     li{
       margin: 0 0.5rem;
+    }
+    li:hover a{
+      color: var(--red);
+      text-decoration: underline;
     }
     a{
       text-decoration: none;
@@ -99,7 +123,6 @@ const NavbarWrapper = styled.nav`
 
     }
   }
-
 `
 
 export default Navbar

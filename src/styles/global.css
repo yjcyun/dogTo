@@ -4,8 +4,12 @@
   --black: #232424;
   --grey: #929292;
   --red: #ff3434;
+  --bcg-grey: #efefed;
+  --white: #fff;
   --heading-ff: "Montserrat", sans-serif;
   --primary-ff: "Merriweather", serif;
+  --transiton: 0.3s all ease;
+  --max-width: 1170px;
 }
 
 * {
@@ -17,6 +21,7 @@
 body {
   font-family: var(--primary-ff);
   color: var(--grey);
+  background: var(--bcg-grey);
 }
 
 ul {
@@ -24,8 +29,13 @@ ul {
 }
 
 main {
-  max-width: 1170px;
+  max-width: var(--max-width);
   margin: 4rem auto 0;
+  background: var(--white);
+}
+
+img {
+  width: 100%;
 }
 
 .header {
