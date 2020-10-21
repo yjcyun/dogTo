@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import LoadMore from '../LoadMore'
 import ThumbnailCard from '../ThumbnailCard'
 import FacebookPlugin from './FacebookPlugin'
 import Subscribe from './Subscribe'
@@ -28,6 +29,15 @@ const News = () => {
       <section className='mt-4'>
         <Subscribe />
       </section>
+      <section className='grid-3 mt-4'>
+        <ThumbnailCard fontSize='1.5rem' category title='Shop' />
+        <ThumbnailCard fontSize='1.5rem' category title='Parks' />
+        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
+        <ThumbnailCard fontSize='1.5rem' category title='City' />
+        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
+        <ThumbnailCard fontSize='1.5rem' category title='City' />
+      </section>
+      <LoadMore />
     </NewsWrapper>
   )
 }
