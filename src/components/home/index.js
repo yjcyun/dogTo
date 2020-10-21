@@ -6,7 +6,7 @@ import Trending from './Trending'
 const Home = () => {
   return (
     <HomeWrapper>
-      <ThumbnailCard fontSize='2rem'/>
+      <ThumbnailCard fontSize='2rem' category title='Eat & Shop'/>
       <Trending />
     </HomeWrapper>
   )

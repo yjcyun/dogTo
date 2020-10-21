@@ -11,7 +11,7 @@ const FacebookPlugin = () => {
         height="180"
         style={{ border: 'none', overflow: 'hidden' }}
         scrolling="no"
-        frameborder="0"
+        frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
       >
@@ -21,7 +21,7 @@ const FacebookPlugin = () => {
 }
 
 const FacebookPluginWrapper = styled.div`
-  margin-top: 2rem;
+  margin-top: 4rem;
 `
 
 export default FacebookPlugin

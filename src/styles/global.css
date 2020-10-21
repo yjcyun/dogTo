@@ -5,7 +5,7 @@
   --dark-grey: #4a4a4a;
   --grey: #929292;
   --light-grey: #dedee0;
-  --red: #ff3434;
+  --red: #f61600;
   --bcg-grey: #efefed;
   --white: #fff;
   --heading-ff: "Montserrat", sans-serif;
@@ -42,6 +42,13 @@ img {
   width: 100%;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--primary-ff);
+}
+
 .header {
   font-family: var(--heading-ff);
   color: var(--black);
@@ -53,4 +60,8 @@ img {
 
 .text-red {
   color: var(--red);
+}
+
+.mt-4 {
+  margin-top: 4rem;
 }

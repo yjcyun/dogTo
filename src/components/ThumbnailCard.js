@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import image1 from '../images/example1.jpg'
 
-const ThumbnailCard = ({ fontSize }) => {
+const ThumbnailCard = ({ fontSize, category, title }) => {
   return (
-    <ThumbnailCardWrapper fontSize={fontSize}>
+    <ThumbnailCardWrapper fontSize={fontSize} category={category}>
       <div className='article-hub-container'>
-        <h4 class='article-category text-red'>Eat & Drink</h4>
-        <span class='article-posted'>Posted 10 minutes ago</span>
+        <h4 className='article-category'>{title}</h4>
+        <span className='article-posted'>Posted 10 minutes ago</span>
       </div>
       <div className='article-thumbnail-container'>
         <img src={image1} alt='thumbnail' />
@@ -24,7 +24,7 @@ const ThumbnailCardWrapper = styled.div`
     position: relative;
     display: inline-block;
     padding: 0.5rem 1rem;
-    margin-top: -4rem;
+    margin-top: -3rem;
     background: var(--white);
     width: 90%;
     h2 {
@@ -39,6 +39,8 @@ const ThumbnailCardWrapper = styled.div`
       margin-right: 1rem;
       font-family: var(--secondary-heading-ff);
       display: inline-block;
+      color: ${props => props.category ? 'var(--red)' : 'var(--grey)'};
+      font-size: ${props => props.category ? 'inherit' : '1.5rem'}
     }
     .article-posted {
       font-size: 0.8rem;

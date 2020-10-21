@@ -112,11 +112,8 @@ const NavbarWrapper = styled.nav`
 
   .header-right {
     button {
-      background: none;
       color: var(--red);
-      border: none;
       font-size: 1.3rem;
-      cursor: pointer;
       padding: 1rem;
     }
     button:hover {
