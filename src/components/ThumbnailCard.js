@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import image1 from '../images/example1.jpg'
 
-const ThumbnailCard = () => {
+const ThumbnailCard = ({ fontSize }) => {
   return (
-    <ThumbnailCardWrapper>
+    <ThumbnailCardWrapper fontSize={fontSize}>
       <div className='article-hub-container'>
         <h4 class='article-category text-red'>Eat & Drink</h4>
         <span class='article-posted'>Posted 10 minutes ago</span>
@@ -13,7 +13,7 @@ const ThumbnailCard = () => {
         <img src={image1} alt='thumbnail' />
       </div>
       <div className='article-thumbnail-header header'>
-        <h2>Toronto's newest sweets shop makes sushi for dessert</h2>
+        <h2>An update for pet owners: More brands of dog food recalled beacuse they may be toxic</h2>
       </div>
     </ThumbnailCardWrapper>
   )
@@ -29,6 +29,7 @@ const ThumbnailCardWrapper = styled.div`
     width: 90%;
     h2 {
       font-weight: 800;
+      font-size: ${props => props.fontSize && props.fontSize}
     }
   }
 

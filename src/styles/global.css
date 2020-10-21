@@ -2,7 +2,9 @@
 
 :root {
   --black: #232424;
+  --dark-grey: #4a4a4a;
   --grey: #929292;
+  --light-grey: #dedee0;
   --red: #ff3434;
   --bcg-grey: #efefed;
   --white: #fff;
@@ -33,7 +35,7 @@ main {
   max-width: var(--max-width);
   margin: 4rem auto 0;
   background: var(--white);
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 img {

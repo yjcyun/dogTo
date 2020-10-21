@@ -6,7 +6,7 @@ import Trending from './Trending'
 const Home = () => {
   return (
     <HomeWrapper>
-      <ThumbnailCard />
+      <ThumbnailCard fontSize='2rem'/>
       <Trending />
     </HomeWrapper>
   )
