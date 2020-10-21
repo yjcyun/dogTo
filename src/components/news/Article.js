@@ -1,8 +1,10 @@
 import React from 'react'
-import { FaFacebookF, FaTwitter, FaBookmark } from 'react-icons/fa'
+
 import image1 from '../../images/example1.jpg'
 import styled from 'styled-components'
 import Subscribe from './Subscribe'
+import Sidebar from '../article/Sidebar'
+import SocialShare from '../default/SocialShare'
 
 const Article = () => {
   return (
@@ -24,36 +26,21 @@ const Article = () => {
         </div>
       </ArticleDetailTitle>
       <ArticleDetailBody>
-        <div className='article-sidebar'>
-          <Subscribe sidebar heading='Stay in the loop'>
-            Sign up for our free email newsletter. <br />
-            Unsubscribe anytime or <a href="/">contact us</a> for details
-          </Subscribe>
-          <div className='article-cta-buttons'>
-            <button>
-              <div>Share</div>
-              <FaFacebookF className='icon' />
-            </button>
-            <button>
-              <span>Tweet</span>
-              <FaTwitter className='icon' />
-            </button>
-            <button>
-              <span>Share</span>
-              <FaBookmark className='icon' />
-            </button>
-          </div>
-        </div>
+        <Sidebar />
         <div className='article-body'>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, impedit. Provident possimus, voluptas adipisci natus perspiciatis commodi a ad doloremque vel id laborum amet exercitationem labore ipsam est deserunt voluptate officiis. Corrupti, autem deleniti eaque quasi eos maxime ipsum odit esse minima dolorem, numquam aliquam obcaecati soluta temporibus beatae consequatur.</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, impedit. Provident possimus, voluptas adipisci natus perspiciatis commodi a ad doloremque vel id laborum amet exercitationem labore ipsam est deserunt voluptate officiis. Corrupti, autem deleniti eaque quasi eos maxime ipsum odit esse minima dolorem, numquam aliquam obcaecati soluta temporibus beatae consequatur.</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, impedit. Provident possimus, voluptas adipisci natus perspiciatis commodi a ad doloremque vel id laborum amet exercitationem labore ipsam est deserunt voluptate officiis. Corrupti, autem deleniti eaque quasi eos maxime ipsum odit esse minima dolorem, numquam aliquam obcaecati soluta temporibus beatae consequatur.</p>
           <div className='article-credit'><span>Lead photo by</span> Jane Doe</div>
+          <div className='article-body-share'>
+            <SocialShare />
+          </div>
         </div>
       </ArticleDetailBody>
     </>
   )
 }
+
 const ArticleHeadingWrapper = styled.div`
   margin: 1rem 0;
   padding: 0.5rem 0;
@@ -108,44 +95,39 @@ const ArticleDetailBody = styled.section`
   grid-gap: 4rem;
   padding: 4rem 0;
 
-  .article-sidebar {
-    .article-cta-buttons{
-      margin-top: 4rem;
-      button {
-        width: 100%;
-        padding: 1rem; 
-        background: var(--black);
-        margin: 0.5rem 0;
-        display: flex;
-        justify-content: space-between;
-        color: var(--white);
-        font-size: 1.2rem;
-        transition: 0.2s;
-        .icon {
-          transition: 0.2s;
-        }
-        &:hover {
-          background: var(--red);
-        }
-        &:hover .icon {
-        transform: translateX(-1rem);
-        }
-      }
-    }
-  }
-
   .article-body {
-    border-bottom: 1px solid var(--bcg-grey);
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
     p {
       line-height: 2;
       margin-bottom: 2rem;
     }
     .article-credit {
       font-size: 0.8rem;
+      border-bottom: 1px solid var(--bcg-grey);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
       span {
         color: var(--grey);
+      }
+    }
+    .article-body-share{
+      button {
+        font-size: 1rem;
+        margin-right: 3rem;
+        color: var(--black);
+        .icon {
+          margin-right: 0.5rem;
+          font-size: 1.5rem;
+          transition: 0.2s;
+        }
+      }
+      button.facebook:hover {
+        color: var(--facebook);
+      }
+      button.twitter:hover {
+        color: var(--twitter);
+      }
+      button.share:hover {
+        color: var(--red);
       }
     }
   }
