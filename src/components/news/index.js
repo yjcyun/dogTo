@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import LoadMore from '../LoadMore'
-import ThumbnailCard from '../ThumbnailCard'
+import LoadMore from '../default/LoadMore'
+import ThumbnailCard from '../default/ThumbnailCard'
 import FacebookPlugin from './FacebookPlugin'
 import Subscribe from './Subscribe'
 
@@ -27,7 +27,11 @@ const News = () => {
         <ThumbnailCard fontSize='1.5rem' category title='City' />
       </section>
       <section className='mt-4'>
-        <Subscribe />
+        <Subscribe
+          heading='Get more news delivered to your inbox'
+        >
+          You can unsubscribe anytime or <a href="/">contact us</a> for details
+        </Subscribe>
       </section>
       <section className='grid-3 mt-4'>
         <ThumbnailCard fontSize='1.5rem' category title='Shop' />

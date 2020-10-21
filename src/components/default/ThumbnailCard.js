@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import image1 from '../images/example1.jpg'
+import image1 from '../../images/example1.jpg'
 
 const ThumbnailCard = ({ fontSize, category, title }) => {
   return (

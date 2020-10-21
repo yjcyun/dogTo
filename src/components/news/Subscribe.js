@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Subscribe = () => {
+const Subscribe = ({ sidebar, heading, children }) => {
   return (
-    <SubscribeWrapper>
+    <SubscribeWrapper sidebar={sidebar}>
       <div className='subscribe-left'>
-        <h2 className='header'>Get more news delivered to your inbox</h2>
-        <p>You can unsubscribe anytime or <a href='/'>contact us</a> for details</p>
+        <h2 className='header'>{heading}</h2>
+        <p>{children}</p>
       </div>
       <form>
         <input type='text' placeholder='Email address' />
@@ -17,20 +17,21 @@ const Subscribe = () => {
 }
 
 const SubscribeWrapper = styled.div`
-  background: var(--bcg-grey);
-  padding: 2rem;
+  background: ${props => props.sidebar ? 'none' : 'var(--bcg-grey)'};
+  padding: ${props => props.sidebar ? '0' : '2rem'};
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ${props => props.sidebar ? '1fr' : '1fr 1fr'};
   grid-gap: 2rem;
 
   h2 {
     font-weight: 800;
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   p{
     font-size: 0.9rem;
+    color: var(--dark-grey);
     a {
       color: var(--red);
       text-decoration: none;

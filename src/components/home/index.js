@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import ThumbnailCard from '../ThumbnailCard'
+import ThumbnailCard from '../default/ThumbnailCard'
 import Trending from './Trending'
 
 const Home = () => {
