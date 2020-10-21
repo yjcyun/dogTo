@@ -38,7 +38,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className='footer-credit'>
-          Site cloned from <a href='https://blogto.com'>blogTo</a>. Developed by <a href='https://christinayun.ca'>Christina Yun</a>.
+          Site cloned from <a href='https://blogto.com'>blogTo</a>. Developed for practice purposes by <a href='https://christinayun.ca'>Christina Yun</a>.
         </div>
       </div>
     </FooterWrapper>
