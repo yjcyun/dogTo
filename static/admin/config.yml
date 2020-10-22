@@ -8,23 +8,47 @@ collections:
   - name: article
     label: Article
     folder: articles
-    media_foler: ''
-    public_folder: ''
-    path: '{{title}}/article'
+    media_foler: ""
+    public_folder: ""
+    path: "{{title}}/article"
     create: true
-    slug: '{{slug}}'
+    slug: "{{slug}}"
     fields:
-      - { name: 'date', label: 'Date', widget: 'datetime' }
-      - { name: 'title', label: 'Title', widget: 'string' }
-      - { 
-        name: 'slug', 
-        label: 'Slug', 
-        widget: 'string', 
-        required: true, 
-        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$','A slug can have no spaces or special characters'],
-        hint: >- }
-      - { name: 'author', label: 'Author', widget: 'string' }
-      - { name: 'image', label: 'Image', widget: 'image' }
-      - { name: 'imageCredit', label: 'Photographer', widget: 'string' }
-      - { name: 'category', label: 'Category', widget: 'select', options: ['Stores', 'Food', 'Parks', 'Fashion'] }
-      - { name: 'body', label: 'Body', widget: 'markdown' }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", required: true }
+      - { name: "author", label: "Author", widget: "string" }
+      - { name: "image", label: "Image", widget: "image" }
+      - { name: "imageCredit", label: "Photographer", widget: "string" }
+      - {
+          name: "category",
+          label: "Category",
+          widget: "select",
+          options: ["Stores", "Food", "Parks", "Fashion"],
+        }
+      - { name: "body", label: "Body", widget: "markdown" }
+  - name: stores
+    label: Stores
+    folder: stores
+    media_foler: ""
+    public_folder: ""
+    path: "{{title}}/store"
+    create: true
+    slug: "{{slug}}-toronto"
+    fields:
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", required: true }
+      - { name: "author", label: "Author", widget: "string" }
+      - { name: "image", label: "Image", widget: "image" }
+      - { name: "imageCredit", label: "Photographer", widget: "string" }
+      - {
+          name: "category",
+          label: "Category",
+          widget: "select",
+          options: ["Stores", "Grooming", "Vet Clinics", "ER Clinics"],
+        }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "address", label: "Address", widget: "string" }
+      - { name: "website", label: "Website", widget: "string" }
+      - { name: "rating", label: "Rating", widget: "number" }
