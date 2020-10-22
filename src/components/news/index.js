@@ -1,30 +1,47 @@
 import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import LoadMore from '../default/LoadMore'
 import ThumbnailCard from '../default/ThumbnailCard'
 import FacebookPlugin from './FacebookPlugin'
 import Subscribe from './Subscribe'
 
+export const query = graphql`
+  {
+    articles:allMdx(sort: {fields: frontmatter___date, order: DESC}) {
+      nodes {
+        frontmatter {
+          articleCategory: category
+          date(fromNow: true)
+          articleTitle: title
+          slug
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+        id
+      }
+    }
+  }
+`
+
 const News = () => {
+  const { articles: { nodes } } = useStaticQuery(query);
+  const latestArticle = nodes[0].frontmatter;
   return (
     <NewsWrapper>
       <section className='intro'>
-        <ThumbnailCard fontSize='2rem' title='Latest News' />
+        <ThumbnailCard fontSize='2rem' title='Latest News' detail={latestArticle} />
         <FacebookPlugin />
       </section>
       <section className='grid-2 mt-4'>
-        <ThumbnailCard fontSize='1.5rem' category title='Shop' />
-        <ThumbnailCard fontSize='1.5rem' category title='Parks' />
-        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
-        <ThumbnailCard fontSize='1.5rem' category title='City' />
-      </section>
-      <section className='grid-3 mt-4'>
-        <ThumbnailCard fontSize='1.5rem' category title='Shop' />
-        <ThumbnailCard fontSize='1.5rem' category title='Parks' />
-        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
-        <ThumbnailCard fontSize='1.5rem' category title='City' />
-        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
-        <ThumbnailCard fontSize='1.5rem' category title='City' />
+        {nodes.slice(1).map(({ frontmatter }, id) => (
+          <ThumbnailCard key={id} fontSize='1.5rem' category detail={frontmatter} />
+        ))}
       </section>
       <section className='mt-4'>
         <Subscribe
@@ -34,13 +51,11 @@ const News = () => {
         </Subscribe>
       </section>
       <section className='grid-3 mt-4'>
-        <ThumbnailCard fontSize='1.5rem' category title='Shop' />
-        <ThumbnailCard fontSize='1.5rem' category title='Parks' />
-        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
-        <ThumbnailCard fontSize='1.5rem' category title='City' />
-        <ThumbnailCard fontSize='1.5rem' category title='Sports & Play' />
-        <ThumbnailCard fontSize='1.5rem' category title='City' />
+        {nodes.slice(1).map(({ frontmatter },id) => (
+          <ThumbnailCard key={id} fontSize='1.5rem' category detail={frontmatter} />
+        ))}
       </section>
+      
       <LoadMore />
     </NewsWrapper>
   )

@@ -16,6 +16,7 @@ export const query = graphql`
         category
         author
         date(fromNow: true)
+        imageCredit
         image {
           childImageSharp {
             fluid {
@@ -32,7 +33,7 @@ export const query = graphql`
 const Article = ({ data }) => {
   const {
     mdx: {
-      frontmatter: { title, category, image, date, author }, body }
+      frontmatter: { title, category, image, date, author,imageCredit }, body }
   } = data;
   console.log(title);
   return (
@@ -55,7 +56,7 @@ const Article = ({ data }) => {
         <Sidebar />
         <div className='article-body'>
           <MDXRenderer>{body}</MDXRenderer>
-          <div className='article-credit'><span>Lead photo by </span>{author}</div>
+          <div className='article-credit'><span>Lead photo by </span>{imageCredit}</div>
           <div className='article-body-share'>
             <SocialShare />
           </div>

@@ -1,20 +1,21 @@
 import React from 'react'
+import Image from 'gatsby-image'
 import styled from 'styled-components'
 import image1 from '../../images/example1.jpg'
 
-const ThumbnailCard = ({ fontSize, category, title }) => {
+const ThumbnailCard = ({ fontSize, category, title, detail }) => {
+  const { articleCategory, articleTitle, date, image } = detail;
+
   return (
     <ThumbnailCardWrapper fontSize={fontSize} category={category}>
       <div className='article-hub-container'>
-        <h4 className='article-category'>{title}</h4>
-        <span className='article-posted'>Posted 10 minutes ago</span>
+        <h4 className='article-category'>{articleCategory ? articleCategory : title}</h4>
+        <span className='article-posted'>{date}</span>
       </div>
       <div className='article-thumbnail-container'>
-        <img src={image1} alt='thumbnail' />
+        <Image fluid={image.childImageSharp.fluid} />
       </div>
-      <div className='article-thumbnail-header header'>
-        An update for pet owners: More brands of dog food recalled beacuse they may be toxic
-      </div>
+      <div className='article-thumbnail-header header'>{articleTitle}</div>
     </ThumbnailCardWrapper>
   )
 }
@@ -38,7 +39,8 @@ const ThumbnailCardWrapper = styled.div`
       font-family: var(--secondary-heading-ff);
       display: inline-block;
       color: ${props => props.category ? 'var(--red)' : 'var(--grey)'};
-      font-size: ${props => props.category ? 'inherit' : '1.5rem'}
+      font-size: ${props => props.category ? 'inherit' : '1.5rem'};
+      text-transform: capitalize;
     }
     .article-posted {
       font-size: 0.8rem;
