@@ -1,11 +1,11 @@
 import React from 'react'
-import ThumbnailCard from '../components/default/ThumbnailCard'
 import Layout from '../components/layout/Layout'
+import Stores from '../components/stores'
 
 const stores = () => {
   return (
     <Layout>
-      <ThumbnailCard />
+      <Stores />
     </Layout>
   )
 }

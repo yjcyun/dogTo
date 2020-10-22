@@ -69,7 +69,7 @@ const News = () => {
 }
 
 const NewsWrapper = styled.div`
-  padding: 1rem 0;
+  padding: 1rem 2rem;
 
   .intro{
     display: grid;

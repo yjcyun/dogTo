@@ -38,38 +38,40 @@ const Article = ({ data }) => {
 
   return (
     <Layout>
-      {/* Article Hub */}
-      <ArticleHeadingWrapper>
-        <div className='article-hub'>
-          <h4 className='article-category text-red'>{category}</h4>
-          <span className='article-author'>{author}</span>
-          <span className='article-posted'>{date}</span>
-        </div>
-        <a href='mailto:abc@email.com' className='article-report'>Report Inaccuracy</a>
-      </ArticleHeadingWrapper>
-      {/* Article thumbnail and title */}
-      <ArticleDetailTitle>
-        <div className='article-header header'>{title}</div>
-        <div className='article-img-container'>
-          <Image fluid={image.childImageSharp.fluid} />
-        </div>
-      </ArticleDetailTitle>
-      {/* Article markdown */}
-      <ArticleDetailBody>
-        <Sidebar />
-        <div className='article-body'>
-          <MDXRenderer>{body}</MDXRenderer>
-          <div className='article-credit'><span>Lead photo by </span>{imageCredit}</div>
-          <div className='article-body-share'>
-            <SocialShare />
+      <div className='page-padding'>
+        {/* Article Hub */}
+        <ArticleHeadingWrapper>
+          <div className='article-hub'>
+            <h4 className='article-category text-red'>{category}</h4>
+            <span className='article-author'>{author}</span>
+            <span className='article-posted'>{date}</span>
           </div>
-        </div>
-      </ArticleDetailBody>
-      {/* Subscribe banner */}
-      <Subscribe heading='Stay in the loop'>
-        Sign up for our free email newsletter. <br />
+          <a href='mailto:abc@email.com' className='article-report'>Report Inaccuracy</a>
+        </ArticleHeadingWrapper>
+        {/* Article thumbnail and title */}
+        <ArticleDetailTitle>
+          <div className='article-header header'>{title}</div>
+          <div className='article-img-container'>
+            <Image fluid={image.childImageSharp.fluid} />
+          </div>
+        </ArticleDetailTitle>
+        {/* Article markdown */}
+        <ArticleDetailBody>
+          <Sidebar />
+          <div className='article-body'>
+            <MDXRenderer>{body}</MDXRenderer>
+            <div className='article-credit'><span>Lead photo by </span>{imageCredit}</div>
+            <div className='article-body-share'>
+              <SocialShare />
+            </div>
+          </div>
+        </ArticleDetailBody>
+        {/* Subscribe banner */}
+        <Subscribe heading='Stay in the loop'>
+          Sign up for our free email newsletter. <br />
       Unsubscribe anytime or <a href="/">contact us</a> for details
-      </Subscribe>
+        </Subscribe>
+      </div>
     </Layout>
   )
 }

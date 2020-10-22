@@ -6,6 +6,7 @@
   --grey: #929292;
   --light-grey: #dedee0;
   --bcg-grey: #efefed;
+  --bcg-grey-2: #f7f7f6;
   --white: #fff;
   --red: #f61600;
   --facebook: #4267b2;
@@ -37,7 +38,7 @@ main {
   max-width: var(--max-width);
   margin: 4rem auto 0;
   background: var(--white);
-  padding: 0 2rem 2rem;
+  padding: 0 0 2rem;
 }
 
 img {
@@ -54,6 +55,10 @@ button {
 .header {
   font-family: var(--heading-ff);
   color: var(--black);
+}
+
+.page-padding {
+  padding: 0 2rem;
 }
 
 .icon {
