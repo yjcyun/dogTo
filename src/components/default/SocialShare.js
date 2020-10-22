@@ -1,21 +1,13 @@
 import React from 'react'
-import { FaFacebookF, FaTwitter, FaBookmark } from 'react-icons/fa'
+import articleButtons from '../../constants/articleButtons'
+import ButtonSolid from './ButtonSolid'
 
 const SocialShare = () => {
   return (
     <>
-      <button className='facebook'>
-        <FaFacebookF className='icon' />
-        <span>Share</span>
-      </button>
-      <button className='twitter'>
-        <FaTwitter className='icon' />
-        <span>Tweet</span>
-      </button>
-      <button className='share'>
-        <FaBookmark className='icon' />
-        <span>Save this Article</span>
-      </button>
+      {articleButtons.map(({ style, text, icon }) => (
+        <ButtonSolid style={style} text={text} icon={icon} />
+      ))}
     </>
   )
 }

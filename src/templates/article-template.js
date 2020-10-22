@@ -33,11 +33,12 @@ export const query = graphql`
 const Article = ({ data }) => {
   const {
     mdx: {
-      frontmatter: { title, category, image, date, author,imageCredit }, body }
+      frontmatter: { title, category, image, date, author, imageCredit }, body }
   } = data;
-  console.log(title);
+
   return (
     <Layout>
+      {/* Article Hub */}
       <ArticleHeadingWrapper>
         <div className='article-hub'>
           <h4 className='article-category text-red'>{category}</h4>
@@ -46,12 +47,14 @@ const Article = ({ data }) => {
         </div>
         <a href='mailto:abc@email.com' className='article-report'>Report Inaccuracy</a>
       </ArticleHeadingWrapper>
+      {/* Article thumbnail and title */}
       <ArticleDetailTitle>
         <div className='article-header header'>{title}</div>
         <div className='article-img-container'>
           <Image fluid={image.childImageSharp.fluid} />
         </div>
       </ArticleDetailTitle>
+      {/* Article markdown */}
       <ArticleDetailBody>
         <Sidebar />
         <div className='article-body'>
@@ -62,6 +65,7 @@ const Article = ({ data }) => {
           </div>
         </div>
       </ArticleDetailBody>
+      {/* Subscribe banner */}
       <Subscribe heading='Stay in the loop'>
         Sign up for our free email newsletter. <br />
       Unsubscribe anytime or <a href="/">contact us</a> for details

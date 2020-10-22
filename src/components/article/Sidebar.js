@@ -1,5 +1,4 @@
 import React from 'react'
-import { FaBookmark, FaFacebookF, FaTwitter } from 'react-icons/fa'
 import styled from 'styled-components'
 import SocialShare from '../default/SocialShare'
 import Subscribe from '../news/Subscribe'
