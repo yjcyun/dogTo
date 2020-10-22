@@ -44,7 +44,7 @@ const News = () => {
       </section>
       {/* grid 2 news articles */}
       <section className='grid-2 mt-4'>
-        {nodes.slice(1).map(({ frontmatter }, id) => (
+        {nodes.slice(1, 5).map(({ frontmatter }, id) => (
           <ThumbnailCard key={id} fontSize='1.5rem' category detail={frontmatter} />
         ))}
       </section>
@@ -58,7 +58,7 @@ const News = () => {
       </section>
       {/* grid 3 news articles */}
       <section className='grid-3 mt-4'>
-        {nodes.slice(1).map(({ frontmatter }, id) => (
+        {nodes.slice(5).map(({ frontmatter }, id) => (
           <ThumbnailCard key={id} fontSize='1.5rem' category detail={frontmatter} />
         ))}
       </section>
