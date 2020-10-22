@@ -2,9 +2,10 @@ import React from 'react'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 import image1 from '../../images/example1.jpg'
+import { Link } from 'gatsby'
 
 const ThumbnailCard = ({ fontSize, category, title, detail }) => {
-  const { articleCategory, articleTitle, date, image } = detail;
+  const { articleCategory, articleTitle, date, image, slug } = detail;
 
   return (
     <ThumbnailCardWrapper fontSize={fontSize} category={category}>
@@ -12,10 +13,12 @@ const ThumbnailCard = ({ fontSize, category, title, detail }) => {
         <h4 className='article-category'>{articleCategory ? articleCategory : title}</h4>
         <span className='article-posted'>{date}</span>
       </div>
-      <div className='article-thumbnail-container'>
-        <Image fluid={image.childImageSharp.fluid} />
-      </div>
-      <div className='article-thumbnail-header header'>{articleTitle}</div>
+      <Link to={`/news/${slug}`} className='article-link'>
+        <div className='article-thumbnail-container'>
+          <Image fluid={image.childImageSharp.fluid} />
+        </div>
+        <div className='article-thumbnail-header header'>{articleTitle}</div>
+      </Link>
     </ThumbnailCardWrapper>
   )
 }
@@ -46,6 +49,10 @@ const ThumbnailCardWrapper = styled.div`
       font-size: 0.8rem;
       color: var(--grey);
     }
+  }
+  
+  .article-link:hover .article-thumbnail-header {
+    color: var(--red);
   }
 `
 
