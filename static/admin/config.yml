@@ -2,15 +2,22 @@ backend:
   name: git-gateway
   branch: master
 
-media_folder: static/assets
-public_folder: /assets
+media_folder: static/img
+public_folder: /img
 collections:
   - name: article
     label: Article
     folder: articles
+    media_foler: ''
+    public_folder: ''
+    path: '{{title}}/article.mdx'
     create: true
+    slug: '{{date}}-{{title}}'
     fields:
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: datetime }
-      - { name: title, label: Title }
-      - { name: body, label: Body, widget: markdown }
+      - { name: 'date', label: 'Date', widget: 'datetime' }
+      - { name: 'title', label: 'Title', widget: 'string' }
+      - { name: 'author', label: 'Author', widget: 'string' }
+      - { name: 'image', label: 'Image', widget: 'image' }
+      - { name: 'imageCredit', label: 'Photographer', widget: 'string' }
+      - { name: 'category', label: 'Category', widget: 'select', options:['Stores', 'Food', 'Parks', 'Fashion']}
+      - { name: 'body', label: 'Body', widget: 'markdown' }
