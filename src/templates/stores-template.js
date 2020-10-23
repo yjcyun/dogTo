@@ -1,12 +1,7 @@
 import React from 'react'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { graphql } from 'gatsby'
-import Image from 'gatsby-image'
-import styled from 'styled-components'
-import Sidebar from '../components/article/Sidebar'
-import SocialShare from '../components/default/SocialShare'
-import Subscribe from '../components/news/Subscribe'
 import Layout from '../components/layout/Layout'
+import FindStores from '../components/stores/FindStores'
 
 export const query = graphql`
   query getStores($skip:Int!, $limit:Int!) {
@@ -32,25 +27,35 @@ export const query = graphql`
           image {
             childImageSharp {
               fluid {
-                src
+                ...GatsbyImageSharpFluid
               }
             }
           }
         }
       }
+      totalCount
     }
   }
 `
 
-const Stores = ({ data }) => {
-  const { stores: { nodes } } = data;
-  console.log(nodes);
+const StoresTemplate = ({ data, pageContext }) => {
+  const { stores: { nodes, totalCount  } } = data;
+  const { currentPage, numOfPages } = pageContext;
+  const isLast = currentPage === numOfPages;
+  const nextPage = `/stores/${currentPage + 1}`;
+
   return (
     <Layout>
-     
+      <FindStores
+        stores={nodes}
+        numOfPages={numOfPages}
+        currentPage={currentPage}
+        nextPage={nextPage}
+        isLast={isLast}
+        totalCount={totalCount}
+      />
     </Layout>
   )
 }
- 
 
-export default Stores
+export default StoresTemplate

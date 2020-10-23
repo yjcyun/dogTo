@@ -1,11 +1,12 @@
-import { Link } from 'gatsby'
 import React from 'react'
+import { Link } from 'gatsby'
+import Image from 'gatsby-image'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 import FormSelect from '../default/FormSelect'
-import image from '../../images/example1.jpg'
 
-const FindStores = () => {
+const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCount }) => {
+
   return (
     <>
       <FindStoresWrapper>
@@ -16,78 +17,44 @@ const FindStores = () => {
         </form>
       </FindStoresWrapper>
       <FindStoresMapWrapper>
-        <h3 className='find-store-map-header header'>All reviews for businesses <span>1-6 (of 12)</span></h3>
+        <h3 className='find-store-map-header header'>All reviews for businesses <span>{6 * (currentPage - 1) + 1}-{currentPage * 6} (of {totalCount})</span>
+        </h3>
         <div className='store-lists'>
           <ul>
-            <li>
-              <Link to='/' className='store-list'>
-                <div className='store-list-image'>
-                  <img src={image} alt='store' />
-                </div>
-                <div className='store-list-detail header'>
-                  <h4 className='header'>Petsmart</h4>
-                  <h5 className='text-red header'>Store</h5>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='store-list'>
-                <div className='store-list-image'>
-                  <img src={image} alt='store' />
-                </div>
-                <div className='store-list-detail header'>
-                  <h4 className='header'>Petsmart</h4>
-                  <h5 className='text-red header'>Store</h5>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='store-list'>
-                <div className='store-list-image'>
-                  <img src={image} alt='store' />
-                </div>
-                <div className='store-list-detail header'>
-                  <h4 className='header'>Petsmart</h4>
-                  <h5 className='text-red header'>Store</h5>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='store-list'>
-                <div className='store-list-image'>
-                  <img src={image} alt='store' />
-                </div>
-                <div className='store-list-detail header'>
-                  <h4 className='header'>Petsmart</h4>
-                  <h5 className='text-red header'>Store</h5>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='store-list'>
-                <div className='store-list-image'>
-                  <img src={image} alt='store' />
-                </div>
-                <div className='store-list-detail header'>
-                  <h4 className='header'>Petsmart</h4>
-                  <h5 className='text-red header'>Store</h5>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='store-list'>
-                <div className='store-list-image'>
-                  <img src={image} alt='store' />
-                </div>
-                <div className='store-list-detail header'>
-                  <h4 className='header'>Petsmart</h4>
-                  <h5 className='text-red header'>Store</h5>
-                </div>
-              </Link>
-            </li>
+            {stores.map(({ id, frontmatter }) => (
+              <li key={id}>
+                <Link to={`/stores/${frontmatter.slug}`} className='store-list'>
+                  <div className='store-list-image'>
+                    <Image fluid={frontmatter.image.childImageSharp.fluid} />
+                  </div>
+                  <div className='store-list-detail header'>
+                    <h4 className='header'>{frontmatter.name}</h4>
+                    <h5 className='text-red header'>{frontmatter.category}</h5>
+                  </div>
+                </Link>
+              </li>
+            ))}
           </ul>
           <div className='map'>Map</div>
         </div>
+        {/* Pagination */}
+        <div className='page-numbers header'>
+          {Array.from({ length: numOfPages }, (_, index) => {
+            return (
+              <Link
+                key={index}
+                to={`/stores/${index === 0 ? '' : index + 1}`}
+                className={`${index + 1 === currentPage ? 'active' : 'muted'} navpages`}
+              >
+                {index + 1}
+              </Link>
+            )
+          })}
+          <Link to={nextPage} className={`${isLast && 'hide '} navpages next-btn`}>
+            <span>Next 6 Reviews</span>
+          </Link>
+        </div>
+
       </FindStoresMapWrapper>
     </>
   )
@@ -132,7 +99,7 @@ const FindStoresMapWrapper = styled.section`
     grid-template-columns: 1fr 2fr;
     text-decoration: none;
     background: var(--bcg-grey-2);
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--light-grey);
     transition: 0.2s all ease;
     &:hover {
@@ -148,6 +115,24 @@ const FindStoresMapWrapper = styled.section`
     h5 {
       font-size: 1.1rem;
     }
+  }
+
+  .navpages {
+    margin-right: 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .navpages.active {
+    color: var(--black);
+  }
+  .navpages.muted, .navpages.next-btn {
+    color: var(--red);
+    &:hover {
+      color: var(--black);
+    }
+  }
+  .hide {
+    display: none;
   }
 `
 
