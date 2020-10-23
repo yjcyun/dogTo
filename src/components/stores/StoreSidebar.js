@@ -9,8 +9,11 @@ import RatingStars from '../default/RatingStars'
 const StoreSidebar = (props) => {
   const {
     mdx: {
-      frontmatter: { name, category, image, date, author, imageCredit, address, rating, website, phone, city } }
+      frontmatter: { name, category, address, rating, website, phone, city } }
   } = props;
+
+  let formatedPhone = phone.toString();
+  formatedPhone = `${formatedPhone.substring(0, 3)}.${formatedPhone.substring(3, 6)}.${formatedPhone.substring(6, 11)}`
 
   return (
     <StoreSidebarWrapper>
@@ -21,7 +24,7 @@ const StoreSidebar = (props) => {
             <Link to='/'>{address}</Link>
           </div>
           <div className='store-badge-item contact'>
-            <div className='store-badge-item store-badge-contact'><Link to='/'>{phone}</Link></div>
+            <div className='store-badge-item store-badge-contact'><Link to='/'>{formatedPhone}</Link></div>
             <div className='store-badge-item store-badge-contact'><a href={website} target='_blank' rel='noreferrer'>Website</a></div>
           </div>
           <div className='store-badge-item'>
@@ -37,7 +40,7 @@ const StoreSidebar = (props) => {
         </div>
         <div className='store-ratings-avg'>
           <span>Average Rating: </span>{rating.toFixed(1)}
-      </div>
+        </div>
         <div className='store-cta-btn'>
           {storeButtons.map(el => <ButtonSolid text={el.text} icon={el.icon} />)}
         </div>

@@ -7,6 +7,7 @@ import SocialShare from '../components/default/SocialShare'
 import Subscribe from '../components/news/Subscribe'
 import Layout from '../components/layout/Layout'
 import StoreSidebar from '../components/stores/StoreSidebar'
+import StoreMap from '../components/stores/StoreMap'
 
 export const query = graphql`
   query GetSingleStore($slug:String) {
@@ -72,7 +73,7 @@ const Article = ({ data }) => {
             </div>
           </ArticleDetailTitle>
         </ArticleDetailBody>
-
+        <StoreMap name={name}/>
         {/* Subscribe banner */}
         <Subscribe heading='Stay in the loop'>
           Sign up for our free email newsletter. <br />
