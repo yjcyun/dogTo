@@ -1,12 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormInput = ({ placeholder, setQ }) =>
-  <FormInputWrapper
-    type='text'
-    placeholder={placeholder}
-    onChange={e => setQ(e.target.value)} />
+const FormInput = ({ placeholder, setQ, text }) =>
+  <FormInputContainer>
+    <small className='header'>{text && text}</small>
+    <FormInputWrapper
+      type='text'
+      placeholder={placeholder}
+      onChange={e => setQ(e.target.value)} />
+  </FormInputContainer>
 
+const FormInputContainer = styled.div`
+  position: relative;
+  small {
+    position: absolute;
+    top: -1.5rem;
+    color: var(--grey);
+  }
+`
 const FormInputWrapper = styled.input`
   padding: 1rem;
   border: 2px solid var(--light-grey);
