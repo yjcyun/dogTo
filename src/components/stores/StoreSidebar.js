@@ -4,39 +4,39 @@ import { FaRegStar, FaStar } from 'react-icons/fa'
 import ButtonSolid from '../default/ButtonSolid'
 import storeButtons from '../../constants/storeButtons'
 import { Link } from 'gatsby'
+import RatingStars from '../default/RatingStars'
 
-const StoreSidebar = () => {
+const StoreSidebar = (props) => {
+  const {
+    mdx: {
+      frontmatter: { name, category, image, date, author, imageCredit, address, rating, website, phone, city } }
+  } = props;
+
   return (
     <StoreSidebarWrapper>
       <div className='sticky'>
-        <h4 className='header'>Name</h4>
+        <h4 className='header'>{name}</h4>
         <div className='store-badge-container'>
           <div className='store-badge-item'>
-            <Link to='/'>Address</Link>
+            <Link to='/'>{address}</Link>
           </div>
           <div className='store-badge-item contact'>
-            <div className='store-badge-item store-badge-contact'><Link to='/'>627.333.3333</Link></div>
-            <div className='store-badge-item store-badge-contact'><a href='https:'>Website</a></div>
+            <div className='store-badge-item store-badge-contact'><Link to='/'>{phone}</Link></div>
+            <div className='store-badge-item store-badge-contact'><a href={website} target='_blank' rel='noreferrer'>Website</a></div>
           </div>
           <div className='store-badge-item'>
-            <Link to='/'>City</Link>
+            <Link to='/'>{city}</Link>
           </div>
           <div className='store-badge-item'>
-            <Link to='/'>Category</Link>
+            <Link to='/'>{category}</Link>
           </div>
         </div>
         <div className='store-ratings'>
           <span>Rate this: </span>
-          <div className='stars'>
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaRegStar />
-          </div>
+          <RatingStars />
         </div>
         <div className='store-ratings-avg'>
-          <span>Average Rating: </span>4.0
+          <span>Average Rating: </span>{rating.toFixed(1)}
       </div>
         <div className='store-cta-btn'>
           {storeButtons.map(el => <ButtonSolid text={el.text} icon={el.icon} />)}
@@ -93,10 +93,6 @@ const StoreSidebarWrapper = styled.aside`
       font-size: 0.8rem;
       margin-right: 0.5rem;
     }
-  }
-
-  .stars {
-    font-size: 2rem;
   }
   
   .store-cta-btn {

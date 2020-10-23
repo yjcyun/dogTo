@@ -13,6 +13,7 @@ export const query = graphql`
     mdx(frontmatter: {slug: {eq: $slug}}) {
       frontmatter {
         address
+        city
         author
         category
         date(fromNow: true)
@@ -21,6 +22,7 @@ export const query = graphql`
         rating
         slug
         website
+        phone
         image {
           childImageSharp {
             fluid {
@@ -39,7 +41,7 @@ const Article = ({ data }) => {
     mdx: {
       frontmatter: { name, category, image, date, author, imageCredit, address, rating, website }, body }
   } = data;
-  console.log(image)
+
   return (
     <Layout>
       <div className='page-padding'>
@@ -55,7 +57,7 @@ const Article = ({ data }) => {
 
         {/* Article markdown */}
         <ArticleDetailBody>
-          <StoreSidebar />
+          <StoreSidebar {...data} />
           <ArticleDetailTitle>
             {/* Article thumbnail and title */}
             <div className='article-header header'>{name}</div>
@@ -66,9 +68,7 @@ const Article = ({ data }) => {
             <div className='article-body'>
               <MDXRenderer>{body}</MDXRenderer>
               <div className='article-credit'><span>Lead photo by </span>{imageCredit}</div>
-              <div className='article-body-share'>
-                <SocialShare />
-              </div>
+              <SocialShare />
             </div>
           </ArticleDetailTitle>
         </ArticleDetailBody>
@@ -151,27 +151,6 @@ const ArticleDetailBody = styled.section`
       margin-bottom: 1rem;
       span {
         color: var(--grey);
-      }
-    }
-    .article-body-share{
-      button {
-        font-size: 1rem;
-        margin-right: 3rem;
-        color: var(--black);
-        .icon {
-          margin-right: 0.5rem;
-          font-size: 1.5rem;
-          transition: 0.2s;
-        }
-      }
-      button.facebook:hover {
-        color: var(--facebook);
-      }
-      button.twitter:hover {
-        color: var(--twitter);
-      }
-      button.share:hover {
-        color: var(--red);
       }
     }
   }

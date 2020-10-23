@@ -11,7 +11,7 @@ const Sidebar = () => {
       Unsubscribe anytime or <a href="/">contact us</a> for details
       </Subscribe>
       <div className='article-cta-buttons'>
-        <SocialShare />
+        <SocialShare solid />
       </div>
     </SidebarWrapper>
   )
