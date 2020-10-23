@@ -4,12 +4,23 @@ import Image from 'gatsby-image'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 import FormSelect from '../default/FormSelect'
+import Pagination from './Pagination'
 
 const searchingForm = term => x => x.frontmatter.address.toLowerCase().includes(term.toLowerCase()) || !term;
 
-const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCount }) => {
-  const [data, setData] = useState(stores);
+const FindStores = ({ nodes, totalCount }) => {
+  // for search
+  const [data] = useState(nodes);
   const [q, setQ] = useState('');
+  // for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+  // change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -25,7 +36,7 @@ const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCo
         </h3>
         <div className='store-lists'>
           <ul>
-            {data.filter(searchingForm(q)).map(({ id, frontmatter }) => (
+            {currentPosts.filter(searchingForm(q)).map(({ id, frontmatter }) => (
               <li key={id}>
                 <Link to={`/stores/${frontmatter.slug}`} className='store-list'>
                   <div className='store-list-image'>
@@ -42,23 +53,13 @@ const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCo
           <div className='map'>Map</div>
         </div>
         {/* Pagination */}
-        <div className='page-numbers header'>
-          {Array.from({ length: numOfPages }, (_, index) => {
-            return (
-              <Link
-                key={index}
-                to={`/stores/${index === 0 ? '' : index + 1}`}
-                className={`${index + 1 === currentPage ? 'active' : 'muted'} navpages`}
-              >
-                {index + 1}
-              </Link>
-            )
-          })}
-          <Link to={nextPage} className={`${isLast && 'hide '} navpages next-btn`}>
-            <span>Next 6 Reviews</span>
-          </Link>
-        </div>
-
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={totalCount}
+          currentPage={currentPage}
+          paginate={paginate}
+          indexOfLastPost={indexOfLastPost}
+        />
       </FindStoresMapWrapper>
     </>
   )
@@ -119,24 +120,6 @@ const FindStoresMapWrapper = styled.section`
     h5 {
       font-size: 1.1rem;
     }
-  }
-
-  .navpages {
-    margin-right: 1.5rem;
-    text-decoration: none;
-    font-weight: 700;
-  }
-  .navpages.active {
-    color: var(--black);
-  }
-  .navpages.muted, .navpages.next-btn {
-    color: var(--red);
-    &:hover {
-      color: var(--black);
-    }
-  }
-  .hide {
-    display: none;
   }
 `
 

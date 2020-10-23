@@ -49,27 +49,9 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.stores.nodes.forEach(({ frontmatter: { slug } }) => {
     createPage({
       path: `/stores/${slug}`,
-      component: path.resolve(`src/templates/store-template.js`),
+      component: path.resolve(`src/pages/stores.js`),
       context: {
         slug
-      }
-    });
-  });
-
-  // render stores template (list)
-  const stores = result.data.stores.nodes;
-  const storesPerPage = 6;
-  const numOfPages = Math.ceil(stores.length / storesPerPage);
-
-  Array.from({ length: numOfPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/stores` : `/stores/${i + 1}`,
-      component: path.resolve(`src/templates/stores-template.js`),
-      context: {
-        limit: storesPerPage,
-        skip: i * storesPerPage,
-        numOfPages,
-        currentPage: i + 1
       }
     });
   });
