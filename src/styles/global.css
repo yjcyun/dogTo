@@ -72,3 +72,9 @@ button {
 .mt-4 {
   margin-top: 4rem;
 }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}

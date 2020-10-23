@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 
-const Subscribe = ({ sidebar, heading, children }) => {
+const Subscribe = ({ sidebar, heading, children, hideBtn, placeholder = 'Email Address' }) => {
   return (
     <SubscribeWrapper sidebar={sidebar}>
       <div className='subscribe-left'>
@@ -10,8 +10,8 @@ const Subscribe = ({ sidebar, heading, children }) => {
         <p>{children}</p>
       </div>
       <form>
-        <FormInput placeholder='Email Address' />
-        <button>Subscribe</button>
+        <FormInput placeholder={placeholder} />
+        {hideBtn ? <span>Type the name of the place you're looking for.</span> : <button>Subscribe</button>}
       </form>
     </SubscribeWrapper>
   )
