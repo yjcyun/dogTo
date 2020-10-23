@@ -9,7 +9,7 @@ import Subscribe from './Subscribe'
 // query all mdx files
 export const query = graphql`
   {
-    articles:allMdx(sort: {fields: frontmatter___date, order: DESC}) {
+    articles:allMdx(filter: {fileAbsolutePath: {regex: "/(articles)/"}}, sort: {fields: frontmatter___date, order: DESC}) {
       nodes {
         frontmatter {
           articleCategory: category
