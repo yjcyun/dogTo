@@ -1,14 +1,15 @@
 import { Link } from 'gatsby'
+import Image from 'gatsby-image'
 import React from 'react'
 import styled from 'styled-components'
-import image from '../../images/example1.jpg'
 
-const StoreThumbnail = () => {
+const StoreThumbnail = ({ detail }) => {
   return (
     <StoreThumbnailWrapper>
-      <Link to='/'>
+      <Link to={detail.slug}>
         <div className='store-thumbnail-container'>
-          <img src={image} alt='Store thumbnail' />
+          <Image fluid={detail.image.childImageSharp.fluid} />
+
         </div>
         <div className='store-thumbnail-header header'>Petsmart</div>
       </Link>

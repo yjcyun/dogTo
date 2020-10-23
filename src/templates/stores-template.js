@@ -4,6 +4,8 @@ import Layout from '../components/layout/Layout'
 import FindStores from '../components/stores/FindStores'
 import Subscribe from '../components/news/Subscribe'
 import StoreThumbnailContainer from '../components/stores/StoreThumbnailContainer'
+import LoadMore from '../components/default/LoadMore'
+import FeaturedStores from '../components/stores/FeaturedStores'
 
 export const query = graphql`
   query getStores($skip:Int!, $limit:Int!) {
@@ -48,6 +50,9 @@ const StoresTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout>
+      <div className='page-padding'>
+        <FeaturedStores />
+      </div>
       <FindStores
         stores={nodes}
         numOfPages={numOfPages}
@@ -62,7 +67,8 @@ const StoresTemplate = ({ data, pageContext }) => {
           heading="Know what you're looking for already?"
           placeholder='Find a business by name...'
         />
-        <StoreThumbnailContainer />
+        <StoreThumbnailContainer nodes={nodes}/>
+        <LoadMore />
       </div>
     </Layout>
   )
