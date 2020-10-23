@@ -14,6 +14,7 @@ export const query = graphql`
     mdx(frontmatter: {slug: {eq: $slug}}) {
       frontmatter {
         address
+        coordinates
         city
         author
         category
@@ -40,7 +41,7 @@ export const query = graphql`
 const Article = ({ data }) => {
   const {
     mdx: {
-      frontmatter: { name, category, image, date, author, imageCredit, address, rating, website }, body }
+      frontmatter: { name, category, image, date, author, imageCredit, coordinates, address, rating, website }, body }
   } = data;
 
   return (
@@ -73,7 +74,7 @@ const Article = ({ data }) => {
             </div>
           </ArticleDetailTitle>
         </ArticleDetailBody>
-        <StoreMap name={name}/>
+        <StoreMap name={name} coordinates={coordinates}/>
         {/* Subscribe banner */}
         <Subscribe heading='Stay in the loop'>
           Sign up for our free email newsletter. <br />
@@ -141,6 +142,7 @@ const ArticleDetailBody = styled.section`
   padding: 2rem 0;
 
   .article-body {
+    margin-top: 2rem;
     p {
       line-height: 2;
       margin-bottom: 2rem;

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 import FormSelect from '../default/FormSelect'
 
+const searchingForm = term => x => x.frontmatter.address.toLowerCase().includes(term.toLowerCase()) || !term;
+
 const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCount }) => {
+  const [data, setData] = useState(stores);
+  const [q, setQ] = useState('');
 
   return (
     <>
@@ -13,7 +17,7 @@ const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCo
         <h2 className='find-store-header header'>Find a business:</h2>
         <form>
           <FormSelect />
-          <FormInput placeholder='By Address' />
+          <FormInput placeholder='By Address' setQ={setQ} />
         </form>
       </FindStoresWrapper>
       <FindStoresMapWrapper>
@@ -21,7 +25,7 @@ const FindStores = ({ stores, currentPage, nextPage, isLast, numOfPages, totalCo
         </h3>
         <div className='store-lists'>
           <ul>
-            {stores.map(({ id, frontmatter }) => (
+            {data.filter(searchingForm(q)).map(({ id, frontmatter }) => (
               <li key={id}>
                 <Link to={`/stores/${frontmatter.slug}`} className='store-list'>
                   <div className='store-list-image'>

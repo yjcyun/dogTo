@@ -9,17 +9,18 @@ const markerIcon = new Icon({
   iconSize: [30, 30]
 });
 
-const StoreMap = ({name}) => {
+const StoreMap = ({name, coordinates}) => {
+ 
   return (
     <StoreMapWrapper>
       <h3 className='store-map-header header'>{name}</h3>
-      <Map center={[43.6532, -79.3832]} zoom={17} style={{ height: '15rem' }}>
+      <Map center={coordinates} zoom={17} style={{ height: '15rem' }}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker
-          position={[43.6532, -79.3832]}
+          position={coordinates}
           icon={markerIcon}
         >
           <Popup>

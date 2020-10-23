@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormInput = ({placeholder}) =>
-  <FormInputWrapper type='text' placeholder={placeholder} />
+const FormInput = ({ placeholder, setQ }) =>
+  <FormInputWrapper
+    type='text'
+    placeholder={placeholder}
+    onChange={e => setQ(e.target.value)} />
 
 const FormInputWrapper = styled.input`
   padding: 1rem;
