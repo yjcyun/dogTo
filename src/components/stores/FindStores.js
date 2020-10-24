@@ -13,7 +13,7 @@ const FindStores = ({ nodes }) => {
   const [category, setCategory] = useState('all');
   const [storeName, setStoreName] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-
+  
   // render filtere data
   useEffect(() => {
     const filterBySearch = () => {

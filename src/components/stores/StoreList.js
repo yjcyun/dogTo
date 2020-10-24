@@ -1,17 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import Map from './Map'
 import StoreListItem from './StoreListItem'
 
 const StoreList = ({ filteredData }) => {
+  const [selectedStore, setSelectedStore] = useState(null);
 
   return (
     <StoreListWrapper>
       <ul>
         {filteredData.map(({ id, frontmatter }) =>
-          <StoreListItem data={frontmatter} key={id} />
+          <StoreListItem
+            data={frontmatter}
+            key={id}
+            setSelectedStore={setSelectedStore}
+          />
         )}
       </ul>
-      <div className='map'>Map</div>
+      <div className='map'>
+        <Map
+          filteredData={filteredData}
+          setSelectedStore={setSelectedStore}
+          selectedStore={selectedStore}
+        />
+      </div>
     </StoreListWrapper>
   )
 }

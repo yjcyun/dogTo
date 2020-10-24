@@ -17,6 +17,7 @@ export const query = graphql`
         body
         frontmatter {
           address
+          coordinates
           author
           category
           date(fromNow: true)

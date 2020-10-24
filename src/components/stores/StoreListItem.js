@@ -3,9 +3,14 @@ import Image from 'gatsby-image'
 import React from 'react'
 import styled from 'styled-components'
 
-const StoreListItem = ({ data: { slug, image, name, category } }) => {
+const StoreListItem = ({ data, setSelectedStore, popup }) => {
+  const { slug, image, name, category } = data;
+
   return (
-    <StoreListItemWrapper>
+    <StoreListItemWrapper
+      popup={popup}
+      onMouseEnter={() => { setSelectedStore(data) }}
+    >
       <Link to={`/stores/${slug}`} className='store-list'>
         <div className='store-list-image'>
           <Image fluid={image.childImageSharp.fluid} />
@@ -24,10 +29,11 @@ const StoreListItemWrapper = styled.li`
     display: grid;
     grid-template-columns: 1fr 2fr;
     text-decoration: none;
-    background: var(--bcg-grey-2);
+    background: ${props => props.popup ? 'transparent' : 'var(--bcg-grey-2)'};
     padding: 1rem 0;
-    border-bottom: 1px solid var(--light-grey);
+    border-bottom: ${props => props.popup ? 'none' : '1px solid var(--light-grey)'};
     transition: 0.2s all ease;
+    list-style: none;
     &:hover {
       background: var(--white);
     }
