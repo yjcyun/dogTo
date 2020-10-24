@@ -18,11 +18,11 @@ const StoreList = ({ filteredData }) => {
         )}
       </ul>
       <div className='map'>
-        {/* <Map
+        <Map
           filteredData={filteredData}
           setSelectedStore={setSelectedStore}
           selectedStore={selectedStore}
-        /> */}
+        />
       </div>
     </StoreListWrapper>
   )
