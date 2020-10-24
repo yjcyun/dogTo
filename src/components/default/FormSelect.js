@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormSelect = () => {
+const FormSelect = ({ options, setQ, handleChange }) => {
   return (
     <FormSelectWrapper>
-      <SelectWrapper>
-        <option value='all'>All Categories</option>
-        <option value='stores'>Stores</option>
-        <option value='grooming'>Grooming</option>
-        <option value='vetclinics'>Vet Clinics</option>
-        <option value='erclinics'>ER Clinics</option>
+      <SelectWrapper
+        name='category'
+        onChange={handleChange}>
+        {options.map(option => (
+          <option key={option} value={option}>{option}</option>
+        ))}
       </SelectWrapper>
     </FormSelectWrapper>
   )

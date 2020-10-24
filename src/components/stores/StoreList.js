@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import StoreListItem from './StoreListItem'
 
-const StoreList = ({ currentData, searchingForm, q }) => {
+const StoreList = ({ currentData, searchByAddress, q, searchByCategory }) => {
+  const tempData= [...currentData];
+  console.log(q)
   return (
     <StoreListWrapper>
       <ul>
-        {currentData.filter(searchingForm(q)).map(({ id, frontmatter }) => (
+        {tempData.filter(searchByAddress(q)).map(({ id, frontmatter }) => (
           <StoreListItem data={frontmatter} key={id} />
         ))}
       </ul>

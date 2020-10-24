@@ -5,12 +5,31 @@ import FormSelect from '../default/FormSelect'
 import Pagination from './Pagination'
 import StoreList from './StoreList'
 
-const searchingForm = term => x => x.frontmatter.address.toLowerCase().includes(term.toLowerCase()) || !term;
+const searchByAddress = term => x => {
+  return x.frontmatter.address.toLowerCase().includes(term.toLowerCase()) || !term;
+}
+
+const searchByCategory = term => x => x.frontmatter.category.toLowerCase().includes(term.toLowerCase()) || !term;
 
 const FindStores = ({ nodes, totalCount }) => {
-  // for search
-  const [data] = useState(nodes);
+  // for search by address
+  const [data, setData] = useState(nodes);
   const [q, setQ] = useState('');
+  const [form, setForm] = useState({
+    address: '',
+    category: ''
+  });
+
+  const handleChange = e => {
+    setForm({ [e.target.name]: e.target.value });
+  }
+
+
+  // search by category options
+  let uniqueCategories = new Set(data.map(el => el.frontmatter.category));
+  uniqueCategories = Array.from(uniqueCategories);
+  uniqueCategories = ['all', ...uniqueCategories];
+
   // for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
@@ -26,10 +45,14 @@ const FindStores = ({ nodes, totalCount }) => {
       <FindStoresWrapper>
         <h2 className='find-store-header header'>Find a business:</h2>
         <form>
-          <FormSelect />
+          <FormSelect
+            options={uniqueCategories}
+            handleChange={handleChange}
+            setQ={setQ} />
           <FormInput
             placeholder='By Address'
             setQ={setQ}
+            handleChange={handleChange}
             text='Try Yonge, Bloor, or Finch'
           />
         </form>
@@ -40,8 +63,9 @@ const FindStores = ({ nodes, totalCount }) => {
         {/* Store list */}
         <StoreList
           currentData={currentData}
-          searchingForm={searchingForm}
-          q={q}
+          searchByAddress={searchByAddress}
+          searchByCategory={searchByCategory}
+          q={form.address}
         />
         {/* Pagination */}
         <Pagination
