@@ -51,7 +51,6 @@ const Stores = () => {
       <FindStores nodes={nodes} totalCount={totalCount} />
       <div className='page-padding'>
         <StoreThumbnailContainer nodes={nodes} />
-        <LoadMore />
       </div>
     </Layout>
   )

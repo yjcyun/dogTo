@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const LoadMore = () => {
+const LoadMore = ({ click }) => {
   return (
     <LoadMoreWrapper>
       <div className='load-more-btn-container'>
-        <button>Load More</button>
+        <button onClick={click}>Load More</button>
       </div>
     </LoadMoreWrapper>
   )
