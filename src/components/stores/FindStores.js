@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 import FormSelect from '../default/FormSelect'
+import Subscribe from '../news/Subscribe'
 import Pagination from './Pagination'
 import StoreList from './StoreList'
 
@@ -10,6 +11,7 @@ const FindStores = ({ nodes, totalCount }) => {
   const [data] = useState(nodes);
   const [address, setAddress] = useState('');
   const [category, setCategory] = useState('all');
+  const [storeName, setStoreName] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
 
@@ -23,12 +25,15 @@ const FindStores = ({ nodes, totalCount }) => {
       if (category !== 'all') {
         tempStores = tempStores.filter(store => store.frontmatter.category.toLowerCase().includes(category.toLowerCase()));
       }
+      if (storeName !== '') {
+        tempStores = tempStores.filter(store => store.frontmatter.name.toLowerCase().includes(storeName.toLowerCase()));
+      }
 
       setFilteredData(tempStores);
     }
 
     filterBySearch();
-  }, [address, category, data]);
+  }, [address, category, storeName, data]);
 
   // handle input value
   const handleChange = e => {
@@ -36,6 +41,8 @@ const FindStores = ({ nodes, totalCount }) => {
       setCategory(e.target.value);
     } else if (e.target.name === 'address') {
       setAddress(e.target.value);
+    } else if (e.target.name === 'storeName') {
+      setStoreName(e.target.value);
     }
   }
 
@@ -50,7 +57,8 @@ const FindStores = ({ nodes, totalCount }) => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentData = filteredData.slice(indexOfFirstPost, indexOfLastPost);
-  
+  const filtereDataLength = filteredData.length
+
   // change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -67,11 +75,12 @@ const FindStores = ({ nodes, totalCount }) => {
             placeholder='By Address'
             handleChange={handleChange}
             text='Try Yonge, Bloor, or Finch'
+            name='address'
           />
         </form>
       </FindStoresWrapper>
       <FindStoresMapWrapper>
-        <h3 className='find-store-map-header header'>All reviews for businesses <span>{6 * (currentPage - 1) + 1}-{currentPage * 6} (of {totalCount})</span>
+        <h3 className='find-store-map-header header'>All reviews for businesses <span>{postsPerPage * (currentPage - 1) + 1}-{(postsPerPage * (currentPage - 1) + currentData.length)} (of {filtereDataLength})</span>
         </h3>
         {/* Store list */}
         <StoreList
@@ -80,11 +89,21 @@ const FindStores = ({ nodes, totalCount }) => {
         {/* Pagination */}
         <Pagination
           postsPerPage={postsPerPage}
-          totalPosts={totalCount}
+          totalPosts={filtereDataLength}
           currentPage={currentPage}
           paginate={paginate}
           indexOfLastPost={indexOfLastPost}
         />
+        {/* Search by store name */}
+        <div className='mt-3'>
+          <Subscribe
+            hideBtn
+            heading="Know what you're looking for already?"
+            placeholder='Find a business by name...'
+            name='storeName'
+            handleChange={handleChange}
+          />
+        </div>
       </FindStoresMapWrapper>
     </>
   )
@@ -105,12 +124,16 @@ const FindStoresWrapper = styled.section`
     grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
   }
+
 `
 
 const FindStoresMapWrapper = styled.section`
   padding: 2rem;
   .find-store-map-header {
     font-size: 1.5rem;
+  }
+  .mt-3{
+    margin-top: 3rem;
   }
 `
 

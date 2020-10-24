@@ -50,11 +50,6 @@ const Stores = () => {
       </div>
       <FindStores nodes={nodes} totalCount={totalCount} />
       <div className='page-padding'>
-        <Subscribe
-          hideBtn
-          heading="Know what you're looking for already?"
-          placeholder='Find a business by name...'
-        />
         <StoreThumbnailContainer nodes={nodes} />
         <LoadMore />
       </div>
