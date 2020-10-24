@@ -6,7 +6,7 @@ import Subscribe from '../news/Subscribe'
 import Pagination from './Pagination'
 import StoreList from './StoreList'
 
-const FindStores = ({ nodes, totalCount }) => {
+const FindStores = ({ nodes }) => {
   // for search by address
   const [data] = useState(nodes);
   const [address, setAddress] = useState('');
@@ -14,11 +14,10 @@ const FindStores = ({ nodes, totalCount }) => {
   const [storeName, setStoreName] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
-
+  // render filtere data
   useEffect(() => {
     const filterBySearch = () => {
       let tempStores = [...data];
-
       if (address !== '') {
         tempStores = tempStores.filter(store => store.frontmatter.address.toLowerCase().includes(address.toLowerCase()));
       }
@@ -28,7 +27,6 @@ const FindStores = ({ nodes, totalCount }) => {
       if (storeName !== '') {
         tempStores = tempStores.filter(store => store.frontmatter.name.toLowerCase().includes(storeName.toLowerCase()));
       }
-
       setFilteredData(tempStores);
     }
 
@@ -70,6 +68,7 @@ const FindStores = ({ nodes, totalCount }) => {
           <FormSelect
             options={uniqueCategories}
             handleChange={handleChange}
+            name='category'
           />
           <FormInput
             placeholder='By Address'
@@ -98,10 +97,12 @@ const FindStores = ({ nodes, totalCount }) => {
         <div className='mt-3'>
           <Subscribe
             hideBtn
+            select
             heading="Know what you're looking for already?"
             placeholder='Find a business by name...'
             name='storeName'
             handleChange={handleChange}
+            options={data.map(el => el.frontmatter.name)}
           />
         </div>
       </FindStoresMapWrapper>

@@ -1,23 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormSelect = ({ options, handleChange, name, placeholder }) => {
+const FormList = ({ options, handleChange, name, placeholder }) => {
   return (
-    <FormSelectWrapper>
+    <FormListWrapper>
       <SelectWrapper
+        type='text'
+        list={name}
         name={name}
         onChange={handleChange}
         placeholder={placeholder}
-      >
+      />
+      <datalist id={name}>
         {options.map(option => (
           <option key={option} value={option}>{option}</option>
         ))}
-      </SelectWrapper>
-    </FormSelectWrapper>
+      </datalist>
+    </FormListWrapper>
   )
 }
 
-const FormSelectWrapper = styled.div`
+const FormListWrapper = styled.div`
   display: flex;
   margin: 0 0.5rem;
   position: relative;
@@ -36,7 +39,7 @@ const FormSelectWrapper = styled.div`
   }
 `
 
-const SelectWrapper = styled.select`
+const SelectWrapper = styled.input`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -51,4 +54,4 @@ const SelectWrapper = styled.select`
   cursor: pointer;
 `
 
-export default FormSelect
+export default FormList
