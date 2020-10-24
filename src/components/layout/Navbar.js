@@ -3,16 +3,19 @@ import { Link } from 'gatsby'
 import { BiUser, BiUserVoice } from 'react-icons/bi'
 import { BiSearch, BiSearchAlt } from 'react-icons/bi'
 import styled from 'styled-components'
-import NavlinkHover from './NavlinkHover'
+import StoreLinkHover from './StoreLinkHover'
+import ArticleLinkHover from './ArticleLinkHover'
 
 const Navbar = () => {
   const [hoverBtnUser, setHoverBtnUser] = useState(false);
   const [hoverBtnSearch, setHoverBtnSearch] = useState(false);
-  const [showNavBox, setShowNavBox] = useState(false);
+  const [storeNavbox, setStoreNavbox] = useState(false);
+  const [articleNavbox, setArticleNavbox] = useState(false);
 
   return (
     <NavbarWrapper className='header'>
-      {showNavBox && <NavlinkHover />}
+      {storeNavbox && <StoreLinkHover setStoreNavbox={setStoreNavbox} />}
+      {articleNavbox && <ArticleLinkHover setArticleNavbox={setArticleNavbox} />}
       <div className='header-container'>
         <div className='header-left'>
           <Link to='/' className='logo-container text-red'>dogTO</Link>
@@ -20,20 +23,14 @@ const Navbar = () => {
         <ul className='nav-links'>
           <li><Link to='/toronto'>best of toronto</Link></li>
           <li
-            onMouseEnter={() => setShowNavBox(true)}
-            onMouseLeave={() => setShowNavBox(false)}
+            onMouseEnter={() => setStoreNavbox(true)}
+            onMouseLeave={() => setStoreNavbox(false)}
           >
             <Link to='/stores'>stores</Link>
           </li>
           <li
-            onMouseEnter={() => setShowNavBox(true)}
-            onMouseLeave={() => setShowNavBox(false)}
-          >
-            <Link to='/places'>places</Link>
-          </li>
-          <li
-            onMouseEnter={() => setShowNavBox(true)}
-            onMouseLeave={() => setShowNavBox(false)}
+            onMouseEnter={() => setArticleNavbox(true)}
+            onMouseLeave={() => setArticleNavbox(false)}
           >
             <Link to='/news'>latest news</Link>
           </li>
@@ -95,6 +92,9 @@ const NavbarWrapper = styled.nav`
   .nav-links {
     align-items: center;
     li{
+      height: 4rem;
+      display: flex;
+      align-items: center;
       margin: 0 0.5rem;
       font-family: var(--secondary-heading-ff);
     }

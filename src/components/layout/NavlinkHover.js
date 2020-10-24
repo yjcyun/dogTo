@@ -1,44 +1,29 @@
+import { graphql, Link, useStaticQuery } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
-import image1 from '../../images/example1.jpg'
+import Image from 'gatsby-image'
 
-const NavlinkHover = () => {
+const NavlinkHover = ({ setNavbox, data, link }) => {
+  
   return (
-    <NavlinkHoverWrapper>
+    <NavlinkHoverWrapper
+      onMouseEnter={() => setNavbox(true)}
+      onMouseLeave={() => setNavbox(false)}
+    >
       <div className='title'>recent reviews</div>
       <NavlinkCardContainer>
-        <NavlinkCard>
-          <div className='img-container'>
-            <img src={image1} alt='burger' />
-          </div>
-          <span className='name'>Burger Place 1</span>
-        </NavlinkCard>
-        <NavlinkCard>
-          <div className='img-container'>
-            <img src={image1} alt='burger' />
-          </div>
-          <span>Burger Place 2</span>
-        </NavlinkCard>
-        <NavlinkCard>
-          <div className='img-container'>
-            <img src={image1} alt='burger' />
-          </div>
-        </NavlinkCard>
-        <NavlinkCard>
-          <div className='img-container'>
-            <img src={image1} alt='burger' />
-          </div>
-        </NavlinkCard>
-        <NavlinkCard>
-          <div className='img-container'>
-            <img src={image1} alt='burger' />
-          </div>
-        </NavlinkCard>
-        <NavlinkCard>
-          <div className='img-container'>
-            <img src={image1} alt='burger' />
-          </div>
-        </NavlinkCard>
+        {data.slice(0, 6).map(el => (
+          <NavlinkCard
+            key={el.id}
+            to={`/${link}/${el.frontmatter.slug}`}
+          >
+            <div className='img-container'>
+              <Image fluid={el.frontmatter.image.childImageSharp.fluid} />
+            </div>
+            <span className='name'>{el.frontmatter.name}</span>
+          </NavlinkCard>
+        ))}
+
       </NavlinkCardContainer>
     </NavlinkHoverWrapper>
   )
@@ -66,10 +51,18 @@ const NavlinkCardContainer = styled.div`
   grid-gap: 1.5rem;
 `
 
-const NavlinkCard = styled.div`
+const NavlinkCard = styled(Link)`
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+    color: var(--red);
+  }
   .name {
     color: var(--red);
     font-size: 0.9rem;
+  }
+  .img-container > div{
+    height: 90px;
   }
 `
 

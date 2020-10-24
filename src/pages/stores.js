@@ -10,7 +10,7 @@ import FeaturedStores from '../components/stores/FeaturedStores'
 export const query = graphql`
   {
     stores: allMdx( 
-      sort: {fields: frontmatter___title, order: ASC}, 
+      sort: {fields: frontmatter___name, order: ASC}, 
       filter: {fileAbsolutePath: {regex: "/(stores)/"}}) {
       nodes {
         id
@@ -25,7 +25,6 @@ export const query = graphql`
           imageCredit
           rating
           slug
-          title
           website
           image {
             childImageSharp {

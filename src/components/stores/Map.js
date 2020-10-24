@@ -3,6 +3,7 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl'
 import styled from 'styled-components';
 import Image from 'gatsby-image'
 import StoreListItem from './StoreListItem';
+
 const Map = ({ filteredData, setSelectedStore, selectedStore }) => {
   const [viewport, setViewport] = useState({
     latitude: 43.6552,

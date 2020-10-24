@@ -12,7 +12,7 @@ export const query = graphql`
   query GetSingleArticle($slug:String) {
     mdx(frontmatter: {slug: {eq: $slug}}) {
       frontmatter {
-        title
+        name
         category
         author
         date(fromNow: true)
@@ -33,7 +33,7 @@ export const query = graphql`
 const Article = ({ data }) => {
   const {
     mdx: {
-      frontmatter: { title, category, image, date, author, imageCredit }, body }
+      frontmatter: { name, category, image, date, author, imageCredit }, body }
   } = data;
 
   return (
@@ -50,7 +50,7 @@ const Article = ({ data }) => {
         </ArticleHeadingWrapper>
         {/* Article thumbnail and title */}
         <ArticleDetailTitle>
-          <div className='article-header header'>{title}</div>
+          <div className='article-header header'>{name}</div>
           <div className='article-img-container'>
             <Image fluid={image.childImageSharp.fluid} />
           </div>

@@ -48,6 +48,9 @@ const StoreListItemWrapper = styled.li`
       font-size: 1.1rem;
     }
   }
+  .store-list-image > div {
+    height: ${props => props.popup ? '50px' : '100px'};
+  }
 `
 
 export default StoreListItem

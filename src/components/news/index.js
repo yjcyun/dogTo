@@ -14,7 +14,7 @@ export const query = graphql`
         frontmatter {
           articleCategory: category
           date(fromNow: true)
-          articleTitle: title
+          articleTitle: name
           slug
           image {
             childImageSharp {

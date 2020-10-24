@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import image1 from '../../images/example1.jpg'
 import { Link } from 'gatsby'
 
-const ThumbnailCard = ({ fontSize, category, title, detail }) => {
+const ThumbnailCard = ({ fontSize, category, name, detail }) => {
   const { articleCategory, articleTitle, date, image, slug } = detail;
 
   return (
     <ThumbnailCardWrapper fontSize={fontSize} category={category}>
       <div className='article-hub-container'>
-        <h4 className='article-category'>{articleCategory ? articleCategory : title}</h4>
+        <h4 className='article-category'>{articleCategory ? articleCategory : name}</h4>
         <span className='article-posted'>{date}</span>
       </div>
       <Link to={`/news/${slug}`} className='article-link'>

@@ -1,6 +1,6 @@
 ---
 date: 2020-10-22T18:49:53.804Z
-title: Chester gets loose in a busy  neighbourhood Edited
+name: Chester gets loose in a busy  neighbourhood Edited
 author: Christina Yun
 image: 20200617_153425.jpg
 imageCredit: Christina Yun
