@@ -2,15 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import StoreListItem from './StoreListItem'
 
-const StoreList = ({ currentData, searchByAddress, q, searchByCategory }) => {
-  const tempData= [...currentData];
-  console.log(q)
+const StoreList = ({ filteredData }) => {
+
   return (
     <StoreListWrapper>
       <ul>
-        {tempData.filter(searchByAddress(q)).map(({ id, frontmatter }) => (
+        {filteredData.map(({ id, frontmatter }) =>
           <StoreListItem data={frontmatter} key={id} />
-        ))}
+        )}
       </ul>
       <div className='map'>Map</div>
     </StoreListWrapper>

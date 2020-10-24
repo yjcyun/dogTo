@@ -34,6 +34,17 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  // render store template (single)
+  result.data.stores.nodes.forEach(({ frontmatter: { slug } }) => {
+    createPage({
+      path: `/stores/${slug}`,
+      component: path.resolve(`src/templates/store-template.js`),
+      context: {
+        slug
+      }
+    });
+  });
+
   // render category template
   // result.data.categories.distinct.forEach(category => {
   //   createPage({
@@ -45,14 +56,5 @@ exports.createPages = async ({ graphql, actions }) => {
   //   });
   // });
 
-  // render store template (single)
-  result.data.stores.nodes.forEach(({ frontmatter: { slug } }) => {
-    createPage({
-      path: `/stores/${slug}`,
-      component: path.resolve(`src/pages/stores.js`),
-      context: {
-        slug
-      }
-    });
-  });
+
 }

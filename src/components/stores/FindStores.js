@@ -1,29 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 import FormSelect from '../default/FormSelect'
 import Pagination from './Pagination'
 import StoreList from './StoreList'
 
-const searchByAddress = term => x => {
-  return x.frontmatter.address.toLowerCase().includes(term.toLowerCase()) || !term;
-}
-
-const searchByCategory = term => x => x.frontmatter.category.toLowerCase().includes(term.toLowerCase()) || !term;
-
 const FindStores = ({ nodes, totalCount }) => {
   // for search by address
-  const [data, setData] = useState(nodes);
-  const [q, setQ] = useState('');
-  const [form, setForm] = useState({
-    address: '',
-    category: ''
-  });
+  const [data] = useState(nodes);
+  const [address, setAddress] = useState('');
+  const [category, setCategory] = useState('all');
+  const [filteredData, setFilteredData] = useState([]);
 
+
+  useEffect(() => {
+    const filterBySearch = () => {
+      let tempStores = [...data];
+
+      if (address !== '') {
+        tempStores = tempStores.filter(store => store.frontmatter.address.toLowerCase().includes(address.toLowerCase()));
+      }
+      if (category !== 'all') {
+        tempStores = tempStores.filter(store => store.frontmatter.category.toLowerCase().includes(category.toLowerCase()));
+      }
+
+      setFilteredData(tempStores);
+    }
+
+    filterBySearch();
+  }, [address, category, data]);
+
+  // handle input value
   const handleChange = e => {
-    setForm({ [e.target.name]: e.target.value });
+    if (e.target.name === 'category') {
+      setCategory(e.target.value);
+    } else if (e.target.name === 'address') {
+      setAddress(e.target.value);
+    }
   }
-
 
   // search by category options
   let uniqueCategories = new Set(data.map(el => el.frontmatter.category));
@@ -33,10 +47,10 @@ const FindStores = ({ nodes, totalCount }) => {
   // for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentData = data.slice(indexOfFirstPost, indexOfLastPost);
+  const currentData = filteredData.slice(indexOfFirstPost, indexOfLastPost);
+  
   // change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -48,10 +62,9 @@ const FindStores = ({ nodes, totalCount }) => {
           <FormSelect
             options={uniqueCategories}
             handleChange={handleChange}
-            setQ={setQ} />
+          />
           <FormInput
             placeholder='By Address'
-            setQ={setQ}
             handleChange={handleChange}
             text='Try Yonge, Bloor, or Finch'
           />
@@ -62,10 +75,7 @@ const FindStores = ({ nodes, totalCount }) => {
         </h3>
         {/* Store list */}
         <StoreList
-          currentData={currentData}
-          searchByAddress={searchByAddress}
-          searchByCategory={searchByCategory}
-          q={form.address}
+          filteredData={currentData}
         />
         {/* Pagination */}
         <Pagination

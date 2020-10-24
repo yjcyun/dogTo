@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormInput = ({ placeholder, setQ, text, handleChange }) =>
+const FormInput = ({ placeholder, text, handleChange }) =>
   <FormInputContainer>
     <small className='header'>{text && text}</small>
     <FormInputWrapper

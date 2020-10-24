@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormSelect = ({ options, setQ, handleChange }) => {
+const FormSelect = ({ options, handleChange }) => {
   return (
     <FormSelectWrapper>
       <SelectWrapper
         name='category'
-        onChange={handleChange}>
+        onChange={handleChange}
+      >
         {options.map(option => (
           <option key={option} value={option}>{option}</option>
         ))}
