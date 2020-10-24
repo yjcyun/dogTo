@@ -24,6 +24,9 @@ const StoreThumbnailWrapper = styled.div`
   .store-thumbnail-container{
     margin-bottom: -2rem;
   }
+  .store-thumbnail-container > div {
+    height: 14rem;
+  }
   .store-thumbnail-header {
     position: relative;
     display: inline-block;
