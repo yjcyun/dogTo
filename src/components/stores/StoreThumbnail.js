@@ -9,9 +9,8 @@ const StoreThumbnail = ({ detail }) => {
       <Link to={detail.slug}>
         <div className='store-thumbnail-container'>
           <Image fluid={detail.image.childImageSharp.fluid} />
-
         </div>
-        <div className='store-thumbnail-header header'>Petsmart</div>
+        <div className='store-thumbnail-header header'>{detail.name}</div>
       </Link>
     </StoreThumbnailWrapper>
   )

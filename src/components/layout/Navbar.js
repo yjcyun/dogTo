@@ -21,7 +21,7 @@ const Navbar = () => {
           <Link to='/' className='logo-container text-red'>dogTO</Link>
         </div>
         <ul className='nav-links'>
-          <li><Link to='/toronto'>best of toronto</Link></li>
+          <li><Link to='/best'>best of toronto</Link></li>
           <li
             onMouseEnter={() => setStoreNavbox(true)}
             onMouseLeave={() => setStoreNavbox(false)}

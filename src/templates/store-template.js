@@ -41,7 +41,7 @@ export const query = graphql`
 const Article = ({ data }) => {
   const {
     mdx: {
-      frontmatter: { name, category, image, date, author, imageCredit, coordinates, address, rating, website }, body }
+      frontmatter: { name, category, image, date, author, imageCredit }, body }
   } = data;
 
   return (
