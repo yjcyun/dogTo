@@ -1,8 +1,9 @@
 import { Link } from 'gatsby'
-import React, { useState } from 'react'
+import React, { createRef, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 const Directory = ({ data }) => {
+
 
   // render unique value of alphabet index
   const getUniqueAlphabet = data => {
@@ -29,8 +30,18 @@ const Directory = ({ data }) => {
     });
   }
 
+  // Scroll to specified alphabet
+  const scrollHandler = (index) => {
+    alphabetRef.current[index].scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+
+  // States
   const [alphabetHeader] = useState(getUniqueAlphabet(data));
   const [currentAlphabet, setCurrentAlphabet] = useState(alphabetHeader[0]);
+  const alphabetRef = useRef([]);
 
   return (
     <DirectoryWrapper>
@@ -50,8 +61,12 @@ const Directory = ({ data }) => {
           {/* list */}
           <div className='alphabetical-list-container'>
             <ol className='alphabetical-list'>
-              {alphabetHeader.map(item => (
-                <li className='alphabetical-list-item' key={item}>
+              {alphabetHeader.map((item, index) => (
+                <li
+                  ref={el => alphabetRef.current[index] = el}
+                  className='alphabetical-list-item'
+                  key={item}
+                >
                   <p className='alphabetical-list-item-letter header'>{item}</p>
                   <div className='ordered-list-container'>
                     <ol className='ordered-list'>
@@ -64,11 +79,14 @@ const Directory = ({ data }) => {
           </div>
           {/* alphabet index */}
           <ol className='letter-index-list header'>
-            {alphabetHeader.map(item => (
+            {alphabetHeader.map((item, index) => (
               <li
                 className={`${currentAlphabet === item && 'active'} letter-index-list-item`}
                 key={item}
-                onClick={() => setCurrentAlphabet(item)}
+                onClick={() => {
+                  setCurrentAlphabet(item);
+                  scrollHandler(index);
+                }}
               >{item}</li>
             ))}
           </ol>
