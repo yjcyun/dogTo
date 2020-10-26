@@ -30,6 +30,7 @@ const Directory = ({ data }) => {
   }
 
   const [alphabetHeader] = useState(getUniqueAlphabet(data));
+  const [currentAlphabet, setCurrentAlphabet] = useState(alphabetHeader[0]);
 
   return (
     <DirectoryWrapper>
@@ -64,7 +65,11 @@ const Directory = ({ data }) => {
           {/* alphabet index */}
           <ol className='letter-index-list header'>
             {alphabetHeader.map(item => (
-              <li className={`letter-index-list-item`} key={item}>{item}</li>
+              <li
+                className={`${currentAlphabet === item && 'active'} letter-index-list-item`}
+                key={item}
+                onClick={() => setCurrentAlphabet(item)}
+              >{item}</li>
             ))}
           </ol>
         </div>
@@ -119,9 +124,11 @@ const DirectoryWrapper = styled.div`
 
   .alphabetical-list-container {
     width: 100%;
-    margin-right: 2rem;
+    margin-right: 0.5rem;
     .alphabetical-list{
       overflow-y: auto;
+      height: 30rem;
+      padding-right: 3rem;
     }
     .ordered-list-item{
       padding:0.5rem 0;
