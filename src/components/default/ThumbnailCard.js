@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
-import image1 from '../../images/example1.jpg'
 import { Link } from 'gatsby'
 
 const ThumbnailCard = ({ fontSize, category, name, detail }) => {

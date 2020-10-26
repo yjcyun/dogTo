@@ -21,19 +21,19 @@ const Footer = () => {
           </ul>
           <ul className='footer-external-links'>
             <li>
-              <a href='/'><FaFacebookF className='icon' /></a>
+              <a href='http://google.ca' target='_blank' rel='noreferrer' aria-label='facebook' arai='true'><FaFacebookF className='icon' /></a>
             </li>
             <li>
-              <a href='/'><FaTwitter className='icon' /></a>
+              <a href='http://google.ca' target='_blank' rel='noreferrer' aria-label='facebook' arai='true'><FaTwitter className='icon' /></a>
             </li>
             <li>
-              <a href='/'><FaInstagram className='icon' /></a>
+              <a href='http://google.ca' target='_blank' rel='noreferrer' aria-label='facebook' arai='true'><FaInstagram className='icon' /></a>
             </li>
             <li>
-              <a href='/'><SiTiktok className='icon' /></a>
+              <a href='http://google.ca' target='_blank' rel='noreferrer' aria-label='facebook' arai='true'><SiTiktok className='icon' /></a>
             </li>
             <li>
-              <a href='/'><FaYoutube className='icon' /></a>
+              <a href='http://google.ca' target='_blank' rel='noreferrer' aria-label='facebook' arai='true'><FaYoutube className='icon' /></a>
             </li>
           </ul>
         </div>

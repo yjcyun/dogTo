@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaRegStar, FaStar } from 'react-icons/fa'
 import ButtonSolid from '../default/ButtonSolid'
 import storeButtons from '../../constants/storeButtons'
 import { Link } from 'gatsby'

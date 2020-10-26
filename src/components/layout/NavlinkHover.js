@@ -1,10 +1,10 @@
-import { graphql, Link, useStaticQuery } from 'gatsby'
+import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 import Image from 'gatsby-image'
 
 const NavlinkHover = ({ setNavbox, data, link }) => {
-  
+
   return (
     <NavlinkHoverWrapper
       onMouseEnter={() => setNavbox(true)}

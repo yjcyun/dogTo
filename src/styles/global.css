@@ -50,6 +50,7 @@ button {
   border: none;
   cursor: pointer;
   font-family: var(--primary-ff);
+  outline: none;
 }
 
 .header {

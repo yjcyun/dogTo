@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import FormInput from '../default/FormInput'
 import FormList from '../default/FormList'
-import FormSelect from '../default/FormSelect'
 
 const Subscribe = ({ sidebar, heading, children, hideBtn, placeholder = 'Email Address', name, handleChange, select, options }) => {
  

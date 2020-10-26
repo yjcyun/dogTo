@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import LoadMore from '../default/LoadMore';
 import StoreThumbnail from './StoreThumbnail'

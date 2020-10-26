@@ -2,9 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import FindStores from '../components/stores/FindStores'
-import Subscribe from '../components/news/Subscribe'
 import StoreThumbnailContainer from '../components/stores/StoreThumbnailContainer'
-import LoadMore from '../components/default/LoadMore'
 import FeaturedStores from '../components/stores/FeaturedStores'
 
 export const query = graphql`

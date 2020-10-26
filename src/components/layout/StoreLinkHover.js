@@ -1,7 +1,5 @@
-import { graphql, Link, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import styled from 'styled-components'
-import Image from 'gatsby-image'
 import NavlinkHover from './NavlinkHover'
 
 export const query = graphql`

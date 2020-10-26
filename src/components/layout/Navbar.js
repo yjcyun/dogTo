@@ -22,17 +22,19 @@ const Navbar = () => {
         </div>
         <ul className='nav-links'>
           <li><Link to='/best'>best of toronto</Link></li>
-          <li
-            onMouseEnter={() => setStoreNavbox(true)}
-            onMouseLeave={() => setStoreNavbox(false)}
-          >
-            <Link to='/stores'>stores</Link>
+          <li>
+            <Link
+              to='/stores'
+              onMouseEnter={() => setStoreNavbox(true)}
+              onMouseLeave={() => setStoreNavbox(false)}
+            >stores</Link>
           </li>
-          <li
-            onMouseEnter={() => setArticleNavbox(true)}
-            onMouseLeave={() => setArticleNavbox(false)}
-          >
-            <Link to='/news'>latest news</Link>
+          <li>
+            <Link
+              to='/news'
+              onMouseEnter={() => setArticleNavbox(true)}
+              onMouseLeave={() => setArticleNavbox(false)}
+            >latest news</Link>
           </li>
           <li><Link to='/videos'>videos</Link></li>
         </ul>
@@ -91,10 +93,7 @@ const NavbarWrapper = styled.nav`
 
   .nav-links {
     align-items: center;
-    li{
-      height: 4rem;
-      display: flex;
-      align-items: center;
+    li{    
       margin: 0 0.5rem;
       font-family: var(--secondary-heading-ff);
     }
@@ -107,6 +106,9 @@ const NavbarWrapper = styled.nav`
       color: var(--grey);
       text-transform: uppercase;
       font-size: 0.9rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
     }
   }
 

@@ -21,13 +21,10 @@ const Directory = ({ data }) => {
   const renderOrderedList = alphabet => {
     return data
       .sort((a, b) => a.frontmatter.name > b.frontmatter.name ? 1 : -1)
-      .map(({ frontmatter, id }) => {
-        if (frontmatter.name.charAt(9) === alphabet) {
-          return (
-            <DirectoryList key={id} frontmatter={frontmatter} />
-          );
-        }
-      });
+      .filter(({ frontmatter }) => frontmatter.name.charAt(9) === alphabet)
+      .map(({ frontmatter, id }) => (
+        <DirectoryList key={id} frontmatter={frontmatter} />
+      ));
   }
 
   // Scroll to specified alphabet
@@ -53,11 +50,11 @@ const Directory = ({ data }) => {
           <div className='sort-tabs-label'>Sort by: </div>
           <ul className='sort-tabs header'>
             {sortByList.map((el, id) => (
-              <li
-                key={id}
-                className={`${sortByIndex === id ? 'active' : ''} sort-tab`}
-                onClick={() => setSortByIndex(id)}
-              >{el.text}</li>
+              <li key={id}>
+                <button
+                  className={`${sortByIndex === id ? 'active' : ''} sort-tab header`}
+                  onClick={() => setSortByIndex(id)}>{el.text}</button>
+              </li>
             ))}
           </ul>
         </div>
@@ -99,19 +96,22 @@ const Directory = ({ data }) => {
           {/* alphabet index */}
           <ol className='letter-index-list header'>
             {alphabetHeader.map((item, index) => (
-              <li
-                className={`${currentAlphabet === item && 'active'} letter-index-list-item`}
-                key={item}
-                onClick={() => {
-                  setCurrentAlphabet(item);
-                  scrollHandler(index);
-                }}
-              >{item}</li>
+              <li key={item} >
+                <button
+                  onClick={() => {
+                    setCurrentAlphabet(item);
+                    scrollHandler(index);
+                  }}
+                  className={`${currentAlphabet === item && 'active'} letter-index-list-item header`}
+                >
+                  {item}
+                </button>
+              </li>
             ))}
           </ol>
         </div>
       </div>
-    </DirectoryWrapper>
+    </DirectoryWrapper >
   )
 }
 
@@ -181,6 +181,7 @@ const DirectoryWrapper = styled.div`
       cursor: pointer;
       display: flex;
       justify-content: center;
+      width: 100%;
       color: var(--black);
       font-weight: 700;
       padding: 2px;
