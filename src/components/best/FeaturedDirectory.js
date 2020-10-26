@@ -7,13 +7,13 @@ import styled from 'styled-components'
 export const query = graphql`
   {
     best: allMdx(
-      filter: {fileAbsolutePath: {regex: "/(best)/"}}, 
-      sort: {fields: frontmatter___name, order: ASC}
+      filter: {fileAbsolutePath: {regex: "/(best)/"}}
     ) {
       nodes {
         body
         id
         frontmatter {
+          views
           featured
           author
           date(fromNow: true)

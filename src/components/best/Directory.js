@@ -1,9 +1,9 @@
-import { Link } from 'gatsby'
-import React, { createRef, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
+import { sortByList } from '../../constants/sortByList'
+import DirectoryList from './DirectoryList'
 
 const Directory = ({ data }) => {
-
 
   // render unique value of alphabet index
   const getUniqueAlphabet = data => {
@@ -19,15 +19,15 @@ const Directory = ({ data }) => {
 
   // render ordered list of data
   const renderOrderedList = alphabet => {
-    return data.map(({ frontmatter, id }) => {
-      if (frontmatter.name.charAt(9) === alphabet) {
-        return (
-          <li className='ordered-list-item' key={id}>
-            <Link to={`/best/${frontmatter.slug}`}>{frontmatter.name}</Link>
-          </li>
-        );
-      }
-    });
+    return data
+      .sort((a, b) => a.frontmatter.name > b.frontmatter.name ? 1 : -1)
+      .map(({ frontmatter, id }) => {
+        if (frontmatter.name.charAt(9) === alphabet) {
+          return (
+            <DirectoryList key={id} frontmatter={frontmatter} />
+          );
+        }
+      });
   }
 
   // Scroll to specified alphabet
@@ -38,9 +38,10 @@ const Directory = ({ data }) => {
     });
   }
 
-  // States
+  // States & refs
   const [alphabetHeader] = useState(getUniqueAlphabet(data));
   const [currentAlphabet, setCurrentAlphabet] = useState(alphabetHeader[0]);
+  const [sortByIndex, setSortByIndex] = useState(0);
   const alphabetRef = useRef([]);
 
   return (
@@ -51,9 +52,13 @@ const Directory = ({ data }) => {
         <div className='sort-tabs-container'>
           <div className='sort-tabs-label'>Sort by: </div>
           <ul className='sort-tabs header'>
-            <li className='sort-tab active'>A-Z</li>
-            <li className='sort-tab'>Popularity</li>
-            <li className='sort-tab'>most recent</li>
+            {sortByList.map((el, id) => (
+              <li
+                key={id}
+                className={`${sortByIndex === id ? 'active' : ''} sort-tab`}
+                onClick={() => setSortByIndex(id)}
+              >{el.text}</li>
+            ))}
           </ul>
         </div>
         {/* Directory list */}
@@ -61,20 +66,34 @@ const Directory = ({ data }) => {
           {/* list */}
           <div className='alphabetical-list-container'>
             <ol className='alphabetical-list'>
-              {alphabetHeader.map((item, index) => (
-                <li
-                  ref={el => alphabetRef.current[index] = el}
-                  className='alphabetical-list-item'
-                  key={item}
-                >
-                  <p className='alphabetical-list-item-letter header'>{item}</p>
-                  <div className='ordered-list-container'>
-                    <ol className='ordered-list'>
-                      {renderOrderedList(item)}
-                    </ol>
-                  </div>
-                </li>
-              ))}
+              {sortByIndex === 0 ?
+                alphabetHeader
+                  .sort((a, b) => a > b ? 1 : -1)
+                  .map((item, index) => (
+                    <li
+                      ref={el => alphabetRef.current[index] = el}
+                      className='alphabetical-list-item'
+                      key={item}
+                    >
+                      <p className='alphabetical-list-item-letter header'>{item}</p>
+                      <div className='ordered-list-container'>
+                        <ol className='ordered-list'>
+                          {renderOrderedList(item)}
+                        </ol>
+                      </div>
+                    </li>
+                  ))
+                : sortByIndex === 1
+                  ? data
+                    .sort((a, b) => a.frontmatter.views < b.frontmatter.views ? 1 : -1)
+                    .map((el, index) => (
+                      <DirectoryList key={index} frontmatter={el.frontmatter} />))
+                  : sortByIndex === 2
+                  && data
+                    .sort((a, b) => a.frontmatter.date < b.frontmatter.date ? 1 : -1)
+                    .map((el, index) => (
+                      <DirectoryList key={index} frontmatter={el.frontmatter} />))
+              }
             </ol>
           </div>
           {/* alphabet index */}
@@ -147,10 +166,6 @@ const DirectoryWrapper = styled.div`
       overflow-y: auto;
       height: 30rem;
       padding-right: 3rem;
-    }
-    .ordered-list-item{
-      padding:0.5rem 0;
-      border-bottom: 1px solid var(--light-grey);
     }
     .alphabetical-list-item-letter{
       font-weight: 700;
