@@ -29,7 +29,7 @@ const ThumbnailCardWrapper = styled.div`
     padding: 0.5rem 1rem;
     margin-top: -3rem;
     background: var(--white);
-    width: 90%;
+    max-width: 90%;
     font-weight: 800;
     font-size: ${props => props.fontSize && props.fontSize}  
   }

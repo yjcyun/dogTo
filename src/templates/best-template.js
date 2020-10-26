@@ -3,28 +3,20 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { graphql } from 'gatsby'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
+import Sidebar from '../components/article/Sidebar'
 import SocialShare from '../components/default/SocialShare'
 import Subscribe from '../components/news/Subscribe'
 import Layout from '../components/layout/Layout'
-import StoreSidebar from '../components/stores/StoreSidebar'
-// import StoreMap from '../components/stores/StoreMap'
 
 export const query = graphql`
-  query GetSingleStore($slug:String) {
+  query GetSingleBest($slug:String) {
     mdx(frontmatter: {slug: {eq: $slug}}) {
       frontmatter {
-        address
-        coordinates
-        city
-        author
-        category
-        date(fromNow: true)
         name
+        category
+        author
+        date(fromNow: true)
         imageCredit
-        rating
-        slug
-        website
-        phone
         image {
           childImageSharp {
             fluid {
@@ -38,7 +30,7 @@ export const query = graphql`
   }
 `
 
-const Article = ({ data }) => {
+const BestTemplate = ({ data }) => {
   const {
     mdx: {
       frontmatter: { name, category, image, date, author, imageCredit }, body }
@@ -56,25 +48,22 @@ const Article = ({ data }) => {
           </div>
           <a href='mailto:abc@email.com' className='article-report'>Report Inaccuracy</a>
         </ArticleHeadingWrapper>
-
+        {/* Article thumbnail and title */}
+        <ArticleDetailTitle>
+          <div className='article-header header'>{name}</div>
+          <div className='article-img-container'>
+            <Image fluid={image.childImageSharp.fluid} />
+          </div>
+        </ArticleDetailTitle>
         {/* Article markdown */}
         <ArticleDetailBody>
-          <StoreSidebar {...data} />
-          <ArticleDetailTitle>
-            {/* Article thumbnail and title */}
-            <div className='article-header header'>{name}</div>
-            <div className='article-img-container'>
-              <Image fluid={image.childImageSharp.fluid} />
-            </div>
-            {/* Article body */}
-            <div className='article-body'>
-              <MDXRenderer>{body}</MDXRenderer>
-              <div className='article-credit'><span>Lead photo by </span>{imageCredit}</div>
-              <SocialShare />
-            </div>
-          </ArticleDetailTitle>
+          <Sidebar />
+          <div className='article-body'>
+            <MDXRenderer>{body}</MDXRenderer>
+            <div className='article-credit'><span>Lead photo by </span>{imageCredit}</div>
+            <SocialShare />
+          </div>
         </ArticleDetailBody>
-        {/* <StoreMap name={name} coordinates={coordinates}/> */}
         {/* Subscribe banner */}
         <Subscribe heading='Stay in the loop'>
           Sign up for our free email newsletter. <br />
@@ -139,10 +128,9 @@ const ArticleDetailBody = styled.section`
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 4rem;
-  padding: 2rem 0;
+  padding: 4rem 0;
 
   .article-body {
-    margin-top: 2rem;
     p {
       line-height: 2;
       margin-bottom: 2rem;
@@ -159,4 +147,4 @@ const ArticleDetailBody = styled.section`
   }
 `
 
-export default Article
+export default BestTemplate

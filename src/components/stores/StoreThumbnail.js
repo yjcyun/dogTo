@@ -3,10 +3,10 @@ import Image from 'gatsby-image'
 import React from 'react'
 import styled from 'styled-components'
 
-const StoreThumbnail = ({ detail, best }) => {
+const StoreThumbnail = ({ detail, bestFeatured, bestLatest }) => {
 
   return (
-    <StoreThumbnailWrapper best={best}>
+    <StoreThumbnailWrapper best={bestFeatured} bestLatest={bestLatest}>
       <Link to={detail.slug}>
         <div className='store-thumbnail-container'>
           <Image fluid={detail.image.childImageSharp.fluid} />
@@ -36,7 +36,7 @@ const StoreThumbnailWrapper = styled.div`
     background: var(--white);
     max-width: 90%;
     font-weight: 800;
-    font-size: 2rem;
+    font-size: ${props => props.bestLatest ? '1.5rem' : '2rem'};
   }
 `
 

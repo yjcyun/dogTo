@@ -28,10 +28,10 @@ const Directory = ({ data }) => {
   }
 
   // Scroll to specified alphabet
-  const scrollHandler = (index) => {
+  const scrollHandler = index => {
     alphabetRef.current[index].scrollIntoView({
       behavior: 'smooth',
-      block: 'start'
+      block: 'nearest'
     });
   }
 
@@ -95,19 +95,20 @@ const Directory = ({ data }) => {
           </div>
           {/* alphabet index */}
           <ol className='letter-index-list header'>
-            {alphabetHeader.map((item, index) => (
-              <li key={item} >
-                <button
-                  onClick={() => {
-                    setCurrentAlphabet(item);
-                    scrollHandler(index);
-                  }}
-                  className={`${currentAlphabet === item && 'active'} letter-index-list-item header`}
-                >
-                  {item}
-                </button>
-              </li>
-            ))}
+            {sortByIndex === 0 &&
+              alphabetHeader.map((item, index) => (
+                <li key={item}>
+                  <button
+                    onClick={() => {
+                      setCurrentAlphabet(item);
+                      scrollHandler(index);
+                    }}
+                    className={`${currentAlphabet === item && 'active'} letter-index-list-item header`}
+                  >
+                    {item}
+                  </button>
+                </li>
+              ))}
           </ol>
         </div>
       </div>
@@ -163,6 +164,7 @@ const DirectoryWrapper = styled.div`
     width: 100%;
     margin-right: 0.5rem;
     .alphabetical-list{
+      position: relative;
       overflow-y: auto;
       height: 30rem;
       padding-right: 3rem;

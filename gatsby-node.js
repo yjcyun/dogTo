@@ -33,6 +33,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      best: allMdx(filter: {fileAbsolutePath: {regex: "/(best)/"}}) {
+        nodes {
+          frontmatter {
+            slug
+          }
+        }
+      }
       categories: allMdx {
         distinct(field: frontmatter___category)
       }
@@ -54,6 +61,17 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/stores/${slug}`,
       component: path.resolve(`src/templates/store-template.js`),
+      context: {
+        slug
+      }
+    });
+  });
+
+  // render best template (single)
+  result.data.best.nodes.forEach(({ frontmatter: { slug } }) => {
+    createPage({
+      path: `/best/${slug}`,
+      component: path.resolve(`src/templates/best-template.js`),
       context: {
         slug
       }

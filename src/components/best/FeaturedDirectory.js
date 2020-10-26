@@ -1,43 +1,14 @@
 import React from 'react'
 import BestFeatured from './BestFeatured'
-import { graphql, useStaticQuery } from 'gatsby'
 import Directory from './Directory'
 import styled from 'styled-components'
 
-export const query = graphql`
-  {
-    best: allMdx(
-      filter: {fileAbsolutePath: {regex: "/(best)/"}}
-    ) {
-      nodes {
-        body
-        id
-        frontmatter {
-          views
-          featured
-          author
-          date(fromNow: true)
-          name
-          slug
-          image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-const FeaturedDirectory = () => {
-  const { best: { nodes } } = useStaticQuery(query);
 
+const FeaturedDirectory = ({ data }) => {
   return (
     <FeaturedDirectoryWrapper className='page-padding'>
-      <BestFeatured data={nodes} />
-      <Directory data={nodes} />
+      <BestFeatured data={data} />
+      <Directory data={data} />
     </FeaturedDirectoryWrapper>
   )
 }
