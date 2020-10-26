@@ -1,8 +1,13 @@
+
 import React from 'react'
 import FeaturedDirectory from '../components/best/FeaturedDirectory'
 import Layout from '../components/layout/Layout'
 
-const best = () => {
+
+
+const BestOfToronto = () => {
+
+
   return (
     <Layout>
       <FeaturedDirectory />
@@ -10,4 +15,4 @@ const best = () => {
   )
 }
 
-export default best
+export default BestOfToronto

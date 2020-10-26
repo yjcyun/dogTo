@@ -30,7 +30,7 @@ body {
   background: var(--bcg-grey);
 }
 
-ul {
+ul, ol {
   list-style: none;
 }
 
