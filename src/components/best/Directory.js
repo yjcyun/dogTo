@@ -150,6 +150,7 @@ const DirectoryWrapper = styled.div`
 
   .directory-list-container {
     display: flex;
+    border-bottom: 3px solid var(--black);
     a {
       text-decoration: none;
       color: var(--black);

@@ -41,11 +41,13 @@ const BestOfToronto = () => {
     <Layout>
       <FeaturedDirectory data={nodes} />
       <div className='page-padding'>
-        <Subscribe
-          heading='Stay in the loop'
-        >Sign up for our free email newsletter. <br />
+        <div style={{margin: '2rem 0'}}>
+          <Subscribe
+            heading='Stay in the loop'
+          >Sign up for our free email newsletter. <br />
         Unsubscribe anytime or <a href="/">contact us</a> for details
         </Subscribe>
+        </div>
         <LatestBest data={nodes} />
 
       </div>
