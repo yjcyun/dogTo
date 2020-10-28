@@ -15,9 +15,12 @@ const FeaturedDirectory = ({ data }) => {
 
 const FeaturedDirectoryWrapper = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
   padding: 1rem;
+
+  @media(min-width:996px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 export default FeaturedDirectory

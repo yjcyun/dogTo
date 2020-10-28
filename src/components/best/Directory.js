@@ -14,7 +14,7 @@ const Directory = ({ data }) => {
 
     const tempAlphabets = new Set(tempListNameArr);
     let alphabets = Array.from(tempAlphabets);
-    return alphabets = [...alphabets];
+    return alphabets = [...alphabets].sort((a, b) => a > b ? 1 : -1);
   }
 
   // render ordered list of data
@@ -119,11 +119,13 @@ const Directory = ({ data }) => {
 const DirectoryWrapper = styled.div`
   .sort-tabs-container{
     display: flex;
-    justify-content:flex-end;
     align-items: center;
     border-top: 1px solid var(--light-grey);
     border-bottom: 3px solid var(--black);
     margin-top: 1rem;
+  }
+  .sort-tabs-label {
+    display: none;
   }
 
   .sort-tabs {
@@ -132,24 +134,23 @@ const DirectoryWrapper = styled.div`
   }
 
   .sort-tab{
-    margin-left: 2px;
+    margin-right: 2px;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    border-right: 1px solid var(--light-grey);
     font-weight: 700;
-    background: var(--grey);
-    color: #fff;
+    color: var(--black);
     padding: 1rem;
     cursor: pointer;
-    &:hover {
-      background: var(--red);
-    }
-    &.active {
-      background: var(--black);
-    }
+  }
+
+  .sort-tabs li:last-child .sort-tab {
+    border-right: none;
   }
 
   .directory-list-container {
     display: flex;
+    flex-direction: column;
     border-bottom: 3px solid var(--black);
     a {
       text-decoration: none;
@@ -178,8 +179,11 @@ const DirectoryWrapper = styled.div`
   }
 
   .letter-index-list {
-    width: 20px;
+    width: 100%;
     margin-top: 1rem;
+    display: flex;
+    padding-bottom: 1rem;
+
     .letter-index-list-item {
       cursor: pointer;
       display: flex;
@@ -187,11 +191,45 @@ const DirectoryWrapper = styled.div`
       width: 100%;
       color: var(--black);
       font-weight: 700;
-      padding: 2px;
-      font-size: 0.9rem;
+      padding: 0.5rem;
+      font-size: 1rem;
       &.active {
         background: var(--red);
         color: white;
+      }
+    }
+  }
+  @media(min-width: 600px) {
+    .sort-tabs-container{
+      justify-content:flex-end;
+    }
+    .sort-tabs-label {
+      display: flex;
+    }
+    .sort-tab{
+      margin-left: 2px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--grey);
+      color: #fff;
+      &:hover {
+        background: var(--red);
+      }
+      &.active {
+        background: var(--black);
+      }
+    }
+
+    .directory-list-container {
+      flex-direction: row;
+    }
+    .letter-index-list {
+      width: 20px;
+      padding-bottom: 0;
+      flex-direction: column;
+      .letter-index-list-item {
+        padding: 2px;
+        font-size: 0.9rem;
       }
     }
   }

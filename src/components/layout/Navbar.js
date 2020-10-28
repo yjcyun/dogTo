@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
-import { BiUser, BiUserVoice } from 'react-icons/bi'
-import { BiSearch, BiSearchAlt } from 'react-icons/bi'
+import { BiUser, BiUserVoice, BiMenu, BiSearch, BiSearchAlt } from 'react-icons/bi'
 import styled from 'styled-components'
 import StoreLinkHover from './StoreLinkHover'
 import ArticleLinkHover from './ArticleLinkHover'
@@ -39,6 +38,9 @@ const Navbar = () => {
           <li><Link to='/videos'>videos</Link></li>
         </ul>
         <div className='header-right'>
+          <button>
+            <BiMenu className='menu-icon icon' />
+          </button>
           <button
             onMouseEnter={() => setHoverBtnUser(true)}
             onMouseLeave={() => setHoverBtnUser(false)}
@@ -93,6 +95,7 @@ const NavbarWrapper = styled.nav`
 
   .nav-links {
     align-items: center;
+    display: none;
     li{    
       margin: 0 0.5rem;
       font-family: var(--secondary-heading-ff);
@@ -113,13 +116,28 @@ const NavbarWrapper = styled.nav`
   }
 
   .header-right {
+    display: flex;
     button {
       color: var(--red);
       font-size: 1.3rem;
-      padding: 1rem;
+      padding: 0 1rem;
+      margin: 0; 
+      height: 4rem;
+      border-left: 1px solid var(--light-grey);
     }
-    button:hover {
+  }
 
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+    .header-right {
+      button {
+        border-left: none;
+      }
+      .menu-icon {
+        display: none;
+      }
     }
   }
 `

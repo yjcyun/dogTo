@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SocialShare from '../default/SocialShare'
-import Subscribe from '../news/Subscribe'
+import Subscribe from './Subscribe'
 
 const Sidebar = () => {
   return (

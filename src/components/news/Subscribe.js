@@ -67,6 +67,10 @@ const SubscribeWrapper = styled.div`
       }
     }
   }
+
+  @media(min-width: 996px) {
+    
+  }
 `
 
 export default Subscribe

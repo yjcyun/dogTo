@@ -27,9 +27,22 @@ const LatestBestWrapper = styled.section`
   margin: 2rem 0;
   .latest-best-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     grid-gap: 2rem;
   }
+
+  @media(min-width:600px) {
+    .latest-best-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media(min-width:996px) {
+    .latest-best-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
 `
 
 export default LatestBest

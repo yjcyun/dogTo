@@ -59,7 +59,13 @@ button {
 }
 
 .page-padding {
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  .page-padding {
+    padding: 0 2rem;
+  }
 }
 
 .icon {
