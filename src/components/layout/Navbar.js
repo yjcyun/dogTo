@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import StoreLinkHover from './StoreLinkHover'
 import ArticleLinkHover from './ArticleLinkHover'
 
-const Navbar = () => {
+const Navbar = ({ setSideBar, sideBar }) => {
   const [hoverBtnUser, setHoverBtnUser] = useState(false);
   const [hoverBtnSearch, setHoverBtnSearch] = useState(false);
   const [storeNavbox, setStoreNavbox] = useState(false);
@@ -37,7 +37,7 @@ const Navbar = () => {
           </li>
         </ul>
         <div className='header-right'>
-          <button>
+          <button onClick={() => setSideBar(!sideBar)}>
             <BiMenu className='menu-icon icon' />
           </button>
           <button
