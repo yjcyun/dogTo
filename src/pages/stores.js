@@ -43,9 +43,6 @@ const Stores = () => {
 
   return (
     <Layout>
-      <div className='page-padding'>
-        <FeaturedStores />
-      </div>
       <FindStores nodes={nodes} totalCount={totalCount} />
       <div className='page-padding'>
         <StoreThumbnailContainer nodes={nodes} />

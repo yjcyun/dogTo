@@ -51,11 +51,16 @@ const StoreSidebar = (props) => {
 
 const StoreSidebarWrapper = styled.aside`
   .sticky{
-    position: sticky;
-    top: 8rem;
-    margin-bottom: 10rem;
+    position: static;
   }
   
+  @media(min-width:768px) {
+    .sticky {
+      position: sticky;
+      top: 8rem;
+      margin-bottom: 10rem;
+    }
+  }
   a {
     text-decoration: none;
     color: var(--red);

@@ -122,19 +122,28 @@ const FindStoresWrapper = styled.section`
 
   form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 2rem;
   }
 
+  @media(min-width:768px) {
+    form{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 `
 
 const FindStoresMapWrapper = styled.section`
-  padding: 2rem;
+  padding: 1rem;
   .find-store-map-header {
     font-size: 1.5rem;
   }
   .mt-3{
     margin-top: 3rem;
+  }
+
+  @media(min-width: 768px) {
+    padding: 2rem;
   }
 `
 

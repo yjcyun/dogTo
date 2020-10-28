@@ -36,7 +36,13 @@ const StoreThumbnailWrapper = styled.div`
     background: var(--white);
     max-width: 90%;
     font-weight: 800;
-    font-size: ${props => props.bestLatest ? '1.5rem' : '2rem'};
+    font-size: 1.3rem;
+  }
+
+  @media(min-width: 768px) {
+    .store-thumbnail-header{
+      font-size: ${props => props.bestLatest ? '1.5rem' : '2rem'};
+    }
   }
 `
 

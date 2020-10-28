@@ -69,19 +69,21 @@ const News = () => {
 }
 
 const NewsWrapper = styled.div`
-  padding: 1rem 2rem;
+  padding: 1rem;
 
   .intro{
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-gap: 2rem;
-  }
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 2rem;
   }
 
+
+  @media(min-width: 996px) {
+    padding: 1rem 2rem;
+    .intro{
+      grid-template-columns: 3fr 2fr;
+    }
+  }
 `
 
 export default News

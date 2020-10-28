@@ -35,7 +35,6 @@ const Navbar = () => {
               onMouseLeave={() => setArticleNavbox(false)}
             >latest news</Link>
           </li>
-          <li><Link to='/videos'>videos</Link></li>
         </ul>
         <div className='header-right'>
           <button>

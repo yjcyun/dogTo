@@ -39,6 +39,13 @@ const StoreListWrapper = styled.div`
   ul {
     overflow: auto; 
   }
+
+  @media(max-width: 768px) {
+    grid-template-columns: 1fr;
+    .map {
+      display: none;
+    }
+  }
 `
 
 export default StoreList

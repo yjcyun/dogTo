@@ -36,6 +36,11 @@ const SocialShareButtons = styled.div`
   .default-btn.share:hover {
     color: var(--red);
   }
+  @media(max-width: 768px) {
+    .default-btn{
+      display: none;
+    }
+  }
 `
 
 export default SocialShare

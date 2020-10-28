@@ -22,6 +22,9 @@ const FacebookPlugin = () => {
 
 const FacebookPluginWrapper = styled.div`
   margin-top: 4rem;
+  @media(max-width:996px) {
+    display: none;
+  }
 `
 
 export default FacebookPlugin

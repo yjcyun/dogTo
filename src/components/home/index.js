@@ -42,9 +42,14 @@ const Home = () => {
 
 const HomeWrapper = styled.section`
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
+  
+  @media(min-width: 768px) {
+    grid-template-columns: 3fr 2fr;
+    padding: 1rem 2rem;
+  }
 `
 
 export default Home

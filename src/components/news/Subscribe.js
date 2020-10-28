@@ -21,7 +21,6 @@ const Subscribe = ({ sidebar, heading, children, hideBtn, placeholder = 'Email A
           />
           : <FormInput placeholder={placeholder} />
         }
-
         {hideBtn ? <span>Type the name of the place you're looking for.</span> : <button>Subscribe</button>}
       </form>
     </SubscribeWrapper>
@@ -32,7 +31,7 @@ const SubscribeWrapper = styled.div`
   background: ${props => props.sidebar ? 'none' : 'var(--bcg-grey)'};
   padding: ${props => props.sidebar ? '0' : '2rem'};
   display: grid;
-  grid-template-columns: ${props => props.sidebar ? '1fr' : '1fr 1fr'};
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
 
   h2 {
@@ -68,8 +67,8 @@ const SubscribeWrapper = styled.div`
     }
   }
 
-  @media(min-width: 996px) {
-    
+  @media(min-width: 768px) {
+    grid-template-columns: ${props => props.sidebar ? '1fr' : '1fr 1fr'};
   }
 `
 

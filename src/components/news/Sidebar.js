@@ -18,8 +18,14 @@ const Sidebar = () => {
 }
 
 const SidebarWrapper = styled.div`
+  order: 2;
+
   .article-cta-buttons{
     margin-top: 4rem;
+  }
+
+  @media(min-width: 768px) {
+    order: 1;
   }
 `
 

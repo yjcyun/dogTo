@@ -116,8 +116,14 @@ const ArticleDetailTitle = styled.section`
     background: var(--white);
     width: 90%;
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 1.5rem;
     z-index: 5;
+  }
+  
+  @media(min-width: 768px) {
+    .article-header{
+      font-size: 3rem;
+    }
   }
   .article-img-container {
     margin-top: -4rem;
@@ -126,11 +132,12 @@ const ArticleDetailTitle = styled.section`
 
 const ArticleDetailBody = styled.section`
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   grid-gap: 4rem;
   padding: 4rem 0;
 
   .article-body {
+    order: 1;
     p {
       line-height: 2;
       margin-bottom: 2rem;
@@ -145,6 +152,14 @@ const ArticleDetailBody = styled.section`
       }
     }
   }
+
+  @media(min-width: 768px) {
+    grid-template-columns: 1fr 2fr;
+    .article-body{
+      order: 2;
+    }
+  }
+
 `
 
 export default Article

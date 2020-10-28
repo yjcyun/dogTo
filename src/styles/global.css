@@ -62,12 +62,6 @@ button {
   padding: 0 1rem;
 }
 
-@media screen and (min-width: 600px) {
-  .page-padding {
-    padding: 0 2rem;
-  }
-}
-
 .icon {
   vertical-align: bottom;
 }
@@ -80,15 +74,42 @@ button {
   margin-top: 4rem;
 }
 
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-}
-
 .subtitle {
   color: var(--grey);
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+}
+
+@media screen and (min-width: 600px) {
+  .page-padding {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 996px) {
+  .grid-3, .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 997px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 

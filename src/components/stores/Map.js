@@ -9,7 +9,7 @@ const Map = ({ filteredData, setSelectedStore, selectedStore }) => {
     longitude: -79.3841,
     zoom: 10,
     width: '37rem',
-    height: '29rem'
+    height: '29.5rem'
   });
 
   return (
