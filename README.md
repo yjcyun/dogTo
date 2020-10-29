@@ -1,4 +1,3 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://dogto.netlify.app/">
     <img alt="dogTO" src="./static/android-chrome-512x512.png" width="60" />
@@ -11,7 +10,7 @@
 This project was developed with <a href="https://www.gatsbyjs.com/">Gatsby</a> for practice. See below for more detail.
 
 
-## 🧐 Frontend Features?
+## 🧐 Frontend Features
 
 I started this project to practice on some essential frontend functionalities. The goal was not to perfectly clone blogTO but to create responsive and useful features. The project does not contain backend however the site is connected to the Netlify CMS (not all data are coming from the CMS) and the data are queried using GraphQL. 
 
@@ -23,7 +22,7 @@ Features include:
   * Pagination
   * Load more by button
   * Sorting
-  * CSS Grid * Flexbox
+  * CSS Grid & Flexbox
   * Dynamic page rendering (Gatsby feature)
 
 
