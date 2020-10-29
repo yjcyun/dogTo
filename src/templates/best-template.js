@@ -145,6 +145,11 @@ const ArticleDetailBody = styled.section`
       }
     }
   }
+  @media(min-width: 768px) {
+    .article-body {
+      order: 1;
+    }
+  }
 `
 
 export default BestTemplate
